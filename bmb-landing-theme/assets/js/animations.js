@@ -84,15 +84,51 @@
 		window.addEventListener( 'scroll', onScroll, { passive: true } );
 	}
 
+	function initCardsRails(){
+		document.querySelectorAll( '[data-bmb-rail]' ).forEach( function ( rail ) {
+			const dots = document.querySelectorAll( '[data-bmb-rail-dot]' );
+			const cards = rail.children;
+			if ( ! cards.length || ! dots.length ) return;
+
+			dots.forEach( function ( dot ) {
+				dot.addEventListener( 'click', function () {
+					const idx = parseInt( dot.dataset.bmbRailDot, 10 ) || 0;
+					const target = cards[ Math.min( idx, cards.length - 1 ) ];
+					if ( target ) {
+						rail.scrollTo( {
+							left: target.offsetLeft - rail.offsetLeft,
+							behavior: reduceMotion ? 'auto' : 'smooth'
+						} );
+					}
+				} );
+			} );
+
+			rail.addEventListener( 'scroll', function () {
+				let activeIndex = 0;
+				const railLeft = rail.scrollLeft;
+				let bestDist = Infinity;
+				for ( let i = 0; i < cards.length; i++ ) {
+					const dist = Math.abs( cards[ i ].offsetLeft - rail.offsetLeft - railLeft );
+					if ( dist < bestDist ) { bestDist = dist; activeIndex = i; }
+				}
+				dots.forEach( function ( d, i ) {
+					d.classList.toggle( 'bmb-cards-rail__dot--active', i === activeIndex );
+				} );
+			}, { passive: true } );
+		} );
+	}
+
 	if ( document.readyState === 'loading' ) {
 		document.addEventListener( 'DOMContentLoaded', function () {
 			initAnimations();
 			initSmoothAnchors();
 			initStickyHeader();
+			initCardsRails();
 		} );
 	} else {
 		initAnimations();
 		initSmoothAnchors();
 		initStickyHeader();
+		initCardsRails();
 	}
 } )();
