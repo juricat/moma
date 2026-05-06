@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BMB Landing - Anteprima locale</title>
+
+<!-- Google Fonts: Outfit (come fa il tema) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+
+<!-- CSS reali del tema -->
+<link rel="stylesheet" href="../bmb-landing-theme/assets/css/main.css">
+<link rel="stylesheet" href="../bmb-landing-theme/blocks/section/style.css">
+<link rel="stylesheet" href="../bmb-landing-theme/blocks/heading/style.css">
+<link rel="stylesheet" href="../bmb-landing-theme/blocks/paragraph/style.css">
+<link rel="stylesheet" href="../bmb-landing-theme/blocks/list/style.css">
+<link rel="stylesheet" href="../bmb-landing-theme/blocks/media/style.css">
+<link rel="stylesheet" href="../bmb-landing-theme/blocks/cta/style.css">
+
+<style>
+/* Inietta variabili customizer come fa wp_head */
+:root{
+	--bmb-primary: #0E294B;
+	--bmb-accent:  #0A75EB;
+}
+/* Banner di anteprima */
+.preview-banner{
+	background: linear-gradient(135deg,#0E294B,#0A75EB);
+	color:#fff; padding:.6rem 1rem; font-size:.875rem; text-align:center;
+	font-family:'Outfit',sans-serif;
+}
+.preview-banner code{
+	background: rgba(255,255,255,.15); padding:.1em .4em; border-radius:4px; font-size:.85em;
+}
+</style>
+</head>
+<body class="bmb-landing">
+
+<div class="preview-banner">
+	Anteprima statica del tema BMB Landing - markup identico a quello che i blocchi Gutenberg generano.
+	Resize della finestra per vedere il responsive.
+</div>
+
+<!-- ===================== HEADER (header.php) ===================== -->
+<header class="bmb-header" data-bmb-header>
+	<div class="bmb-header__inner">
+		<div class="bmb-header__brand">
+			<a class="bmb-header__title" href="#">BMB</a>
+		</div>
+		<button class="bmb-header__toggle" aria-expanded="false" aria-controls="bmb-primary-menu" data-bmb-menu-toggle>
+			<span class="bmb-burger"><span></span><span></span><span></span></span>
+		</button>
+		<nav class="bmb-header__nav" id="bmb-primary-menu" aria-label="Menu principale">
+			<ul class="bmb-menu">
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#azienda" data-bmb-anchor="true">AZIENDA</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#macchine" data-bmb-anchor="true">MACCHINE</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#industries" data-bmb-anchor="true">INDUSTRIES</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#filosofia" data-bmb-anchor="true">FILOSOFIA PROGETTUALE</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#portfolio" data-bmb-anchor="true">PORTFOLIO</a></li>
+			</ul>
+			<a class="bmb-btn bmb-btn--accent bmb-btn--s bmb-header__cta" href="#contatti" data-bmb-anchor="true">CONTATTI</a>
+		</nav>
+	</div>
+</header>
+
+<main id="main" class="bmb-main">
+
+<!-- ===================== HERO (BMB Sezione + Titolo + CTA) ===================== -->
+<section class="bmb-section bmb-section--vp-xxl" id="azienda" data-bmb-anim-in="fade-up"
+	style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?w=2000&auto=format&fit=crop'); background-size:cover; background-position:center;">
+	<div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,41,75,.55) 0%, rgba(14,41,75,.75) 100%);"></div>
+	<div class="bmb-section__inner bmb-section__inner--wide" style="position:relative; text-align:center; color:#fff;">
+		<h1 class="bmb-heading bmb-heading--xxxl bmb-heading--align-center" style="font-weight:700; color:#fff;">
+			<span>Stampiamo soluzioni.<br>Modelliamo successi.<br>Dal 1967.</span>
+		</h1>
+		<div class="bmb-cta-wrap bmb-cta-wrap--align-center" style="gap:1rem; flex-wrap:wrap;">
+			<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#video">
+				<span class="bmb-btn__label">▶ GUARDA IL VIDEO</span>
+			</a>
+			<a class="bmb-btn bmb-btn--accent bmb-btn--m" href="#azienda" data-bmb-anchor="true">
+				<span class="bmb-btn__label">SCOPRI L'AZIENDA</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== MACCHINE (Sezione bianca con titolo + cards) ===================== -->
+<section class="bmb-section bmb-section--vp-xl" id="macchine" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide">
+
+		<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content"
+		   style="color:var(--bmb-accent); margin-bottom:.6rem;">
+			<strong>Macchine</strong>
+		</p>
+
+		<h2 class="bmb-heading bmb-heading--xxl bmb-heading--align-left" style="font-weight:600;">
+			<span>Per ogni prodotto, una<br>macchina adatta</span>
+		</h2>
+
+		<p class="bmb-paragraph bmb-paragraph--l bmb-paragraph--mw-medium" style="font-weight:300;">
+			Dal 2000 ad oggi, grazie a un'evoluzione costante, la gamma <strong>Full electric</strong>
+			può raggiungere le 1200 tonnellate, offrendo una soluzione performante, sostenibile
+			e competitiva per le esigenze più ampie del settore, garantendo precisione,
+			velocità e bassi consumi energetici.
+		</p>
+
+		<p class="bmb-paragraph bmb-paragraph--m bmb-paragraph--mw-content" style="margin-top:2rem;">
+			<strong>la nostra gamma è divisa in:</strong>
+		</p>
+
+		<div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-1">Tipologia</a>
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-2">Tipologia</a>
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-3">Tipologia</a>
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-4">Tipologia</a>
+		</div>
+
+		<!-- Cards orizzontali -->
+		<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.25rem;">
+			<article style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem;">
+				<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+					<div class="bmb-media__frame">
+						<img class="bmb-media__img" loading="lazy" alt="Macchina"
+						     src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&auto=format&fit=crop">
+					</div>
+				</figure>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-accent); margin-top:1rem;">▲ Tipologia</p>
+				<h3 class="bmb-heading bmb-heading--l" style="font-weight:500;"><span>Nome Macchina</span></h3>
+				<a class="bmb-btn bmb-btn--ghost bmb-btn--s" href="#dettaglio" style="padding:.4em 0; align-self:start;">→</a>
+			</article>
+			<article style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem;">
+				<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+					<div class="bmb-media__frame">
+						<img class="bmb-media__img" loading="lazy" alt="Macchina"
+						     src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&auto=format&fit=crop">
+					</div>
+				</figure>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-accent); margin-top:1rem;">▲ Tipologia</p>
+				<h3 class="bmb-heading bmb-heading--l" style="font-weight:500;"><span>Nome Macchina</span></h3>
+				<a class="bmb-btn bmb-btn--ghost bmb-btn--s" href="#dettaglio" style="padding:.4em 0; align-self:start;">→</a>
+			</article>
+			<article style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem;">
+				<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+					<div class="bmb-media__frame">
+						<img class="bmb-media__img" loading="lazy" alt="Macchina"
+						     src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop">
+					</div>
+				</figure>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-accent); margin-top:1rem;">▲ Tipologia</p>
+				<h3 class="bmb-heading bmb-heading--l" style="font-weight:500;"><span>Nome Macchina</span></h3>
+				<a class="bmb-btn bmb-btn--ghost bmb-btn--s" href="#dettaglio" style="padding:.4em 0; align-self:start;">→</a>
+			</article>
+		</div>
+
+		<div class="bmb-cta-wrap bmb-cta-wrap--align-left" style="margin-top:2rem;">
+			<a class="bmb-btn bmb-btn--primary bmb-btn--m" href="#catalogo">
+				<span class="bmb-btn__label">sfoglia il nostro catalogo macchine</span>
+				<span class="bmb-btn__icon">↗</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== CONSULENZA (split blu) ===================== -->
+<section class="bmb-section bmb-section--vp-l" id="consulenza" data-bmb-anim-in="fade-up"
+	style="background:transparent; padding:0;">
+	<div style="display:grid; grid-template-columns: 1.1fr 1fr; min-height:420px;">
+		<div style="background:url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop') center/cover;"></div>
+		<div style="background:var(--bmb-accent); color:#fff; padding:clamp(2rem,4vw,4rem); display:flex; flex-direction:column; justify-content:center;">
+			<h2 class="bmb-heading bmb-heading--xxl" style="color:#fff; font-weight:600;"><span>Consulenza</span></h2>
+			<p class="bmb-paragraph bmb-paragraph--l" style="color:#fff; font-weight:300;">
+				Il nostro ufficio tecnico è composto da un team di ingegneri e specialisti altamente qualificati nei settori della meccanica, del software e della progettazione elettrica.
+			</p>
+			<div class="bmb-cta-wrap" style="margin-top:1.25rem;">
+				<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#pacchetti">
+					<span class="bmb-btn__label">Scopri i pacchetti che offriamo</span>
+					<span class="bmb-btn__icon">↗</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div style="display:grid; grid-template-columns: 1fr 1.1fr; min-height:420px;" id="industries">
+		<div style="background:var(--bmb-accent); color:#fff; padding:clamp(2rem,4vw,4rem); display:flex; flex-direction:column; justify-content:center;">
+			<h2 class="bmb-heading bmb-heading--xxl" style="color:#fff; font-weight:600;"><span>Industries</span></h2>
+			<p class="bmb-paragraph bmb-paragraph--l" style="color:#fff; font-weight:300;">
+				Il nostro ufficio tecnico è composto da un team di ingegneri e specialisti altamente qualificati nei settori della meccanica, del software e della progettazione elettrica.
+			</p>
+			<div class="bmb-cta-wrap" style="margin-top:1.25rem;">
+				<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#filosofia" data-bmb-anchor="true">
+					<span class="bmb-btn__label">Scopri la nostra filosofia progettuale</span>
+					<span class="bmb-btn__icon">↗</span>
+				</a>
+			</div>
+		</div>
+		<div style="background:url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&auto=format&fit=crop') center/cover;"></div>
+	</div>
+</section>
+
+<!-- ===================== CASE STUDY ===================== -->
+<section class="bmb-section bmb-section--vp-xl" id="filosofia" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide">
+		<div style="background:var(--bmb-grey-10); border-radius:14px; padding:clamp(1.5rem,3vw,2.5rem); display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;">
+			<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+				<div class="bmb-media__frame">
+					<img class="bmb-media__img" loading="lazy" alt="Case study"
+					     src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format&fit=crop">
+				</div>
+			</figure>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content"
+				   style="color:var(--bmb-accent); background:var(--bmb-blue-13); padding:.3em .8em; border-radius:4px;">
+					<strong>tag editoriale</strong>
+				</p>
+				<h2 class="bmb-heading bmb-heading--xl" style="font-weight:600;">
+					<span>Titolo case study Case lorem ipsum dolores amet</span>
+				</h2>
+				<p class="bmb-paragraph bmb-paragraph--m">
+					Lorem ipsum dolor sit amet consectetur. Massa tellus mus nisl lacus orci. In donec scelerisque consequat tempor odio bibendum. Purus in pharetra.
+				</p>
+				<div class="bmb-cta-wrap">
+					<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#case">
+						<span class="bmb-btn__label">SCOPRI IL CASE</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="bmb-cta-wrap" style="margin-top:1.5rem;">
+			<a class="bmb-btn bmb-btn--accent bmb-btn--m bmb-btn--full" href="#stories">
+				<span class="bmb-btn__label">leggi altre storie di successo</span>
+				<span class="bmb-btn__icon">↗</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== AZIENDA (full bleed image + overlay) ===================== -->
+<section class="bmb-section bmb-section--vp-xl" id="portfolio" data-bmb-anim-in="zoom-in"
+	style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?w=2000&auto=format&fit=crop'); background-size:cover; background-position:center;">
+	<div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,41,75,.45) 0%, rgba(14,41,75,.7) 100%);"></div>
+	<div class="bmb-section__inner bmb-section__inner--wide" style="position:relative; text-align:center; color:#fff;">
+		<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content bmb-paragraph--align-center"
+		   style="color:#fff; opacity:.85;">About BMB</p>
+		<h2 class="bmb-heading bmb-heading--xxl bmb-heading--align-center" style="color:#fff; font-weight:600;">
+			<span>testo che richiama l'azienda</span>
+		</h2>
+		<div class="bmb-cta-wrap bmb-cta-wrap--align-center" style="gap:1rem; flex-wrap:wrap;">
+			<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#video">
+				<span class="bmb-btn__label">▶ GUARDA IL VIDEO</span>
+			</a>
+			<a class="bmb-btn bmb-btn--accent bmb-btn--m" href="#scopri">
+				<span class="bmb-btn__label">SCOPRI L'AZIENDA</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="bmb-section bmb-section--vp-xl" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide">
+		<div style="background:var(--bmb-grey-10); border-radius:14px; padding:clamp(1.5rem,3vw,2.5rem); display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;">
+			<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+				<div class="bmb-media__frame">
+					<img class="bmb-media__img" loading="lazy" alt="Team"
+					     src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&auto=format&fit=crop">
+				</div>
+			</figure>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content"
+				   style="color:var(--bmb-accent);"><strong>team</strong></p>
+				<h2 class="bmb-heading bmb-heading--xl" style="font-weight:600;">
+					<span>Incontra il nostro fantastico team!</span>
+				</h2>
+				<p class="bmb-paragraph bmb-paragraph--m">
+					Il nostro team dell'ufficio tecnico BMB è composto da professionisti altamente qualificati, ognuno con competenze specifiche nel proprio settore.
+					Siamo un gruppo affiatato di ingegneri, progettisti tecnici, pronti a collaborare per offrire soluzioni innovative ed elevate qualità.
+				</p>
+				<div class="bmb-cta-wrap">
+					<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#team">
+						<span class="bmb-btn__label">SCOPRI IL TEAM</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== CTA finale ===================== -->
+<section class="bmb-section bmb-section--vp-l" id="contatti" data-bmb-anim-in="fade-up"
+	style="background:var(--bmb-accent); color:#fff;">
+	<div class="bmb-section__inner bmb-section__inner--wide" style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;">
+		<div>
+			<figure class="bmb-media bmb-media--image bmb-media--ratio-1-1 bmb-media--size-full bmb-media--rounded-m">
+				<div class="bmb-media__frame">
+					<img class="bmb-media__img" loading="lazy" alt="Contatti"
+					     src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&auto=format&fit=crop">
+				</div>
+			</figure>
+		</div>
+		<div>
+			<h2 class="bmb-heading bmb-heading--xxl" style="color:#fff; font-weight:600;">
+				<span>siamo in tutto il mondo</span>
+			</h2>
+			<p class="bmb-paragraph bmb-paragraph--l" style="color:#fff; font-weight:300;">
+				cerca il consulente che fa per te
+			</p>
+			<div class="bmb-cta-wrap">
+				<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#mappa">
+					<span class="bmb-btn__label">↗</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== Fiera ===================== -->
+<section class="bmb-section bmb-section--vp-m" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide" style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+		<div style="background:var(--bmb-primary); color:#fff; padding:1rem 1.5rem; border-radius:8px; font-weight:700; letter-spacing:.05em;">MECSPE</div>
+		<div style="flex:1;">
+			<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-primary); margin:0;"><strong>CI TROVI IN FIERA MECSPE</strong></p>
+			<p class="bmb-paragraph bmb-paragraph--m" style="margin:0;">dalle <strong>00:00</strong> alle <strong>00:00</strong> il <strong>00/00/2025</strong></p>
+		</div>
+		<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#fiera">↗</a>
+	</div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bmb-footer">
+	<div class="bmb-footer__inner" style="flex-direction:column; align-items:stretch;">
+		<div style="display:grid; grid-template-columns: auto repeat(3, 1fr); gap:3rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,.15);">
+			<div>
+				<div style="background:#fff; color:var(--bmb-primary); width:80px; height:80px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.5rem;">BMB</div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; opacity:.7; margin-top:1rem;">LE NOSTRE BUSINESS UNIT</p>
+			</div>
+			<div>
+				<h4 class="bmb-heading bmb-heading--s bmb-heading--uppercase" style="color:#fff; font-weight:600;"><span>MENU</span></h4>
+				<ul class="bmb-footer-menu" style="flex-direction:column; gap:.5rem; align-items:flex-start;">
+					<li><a class="bmb-menu-link" href="#azienda">AZIENDA</a></li>
+					<li><a class="bmb-menu-link" href="#macchine">MACCHINE</a></li>
+					<li><a class="bmb-menu-link" href="#industries">INDUSTRIES</a></li>
+					<li><a class="bmb-menu-link" href="#filosofia">FILOSOFIA PROGETTUALE</a></li>
+					<li><a class="bmb-menu-link" href="#portfolio">PORTFOLIO</a></li>
+					<li><a class="bmb-menu-link" href="#lavora">LAVORA CON NOI</a></li>
+				</ul>
+			</div>
+			<div>
+				<h4 class="bmb-heading bmb-heading--s bmb-heading--uppercase" style="color:#fff; font-weight:600;"><span>MACCHINE</span></h4>
+				<ul class="bmb-footer-menu" style="flex-direction:column; gap:.5rem; align-items:flex-start;">
+					<li><a class="bmb-menu-link" href="#hybrid">eXOn HYBRID</a></li>
+					<li><a class="bmb-menu-link" href="#hp">eXOn HP</a></li>
+					<li><a class="bmb-menu-link" href="#fe">eXOn FULL ELECTRIC</a></li>
+					<li><a class="bmb-menu-link" href="#hl">eXOn HL</a></li>
+					<li><a class="bmb-menu-link" href="#io">IO</a></li>
+				</ul>
+			</div>
+			<div>
+				<h4 class="bmb-heading bmb-heading--s bmb-heading--uppercase" style="color:#fff; font-weight:600;"><span>INDUSTRY</span></h4>
+				<ul class="bmb-footer-menu" style="flex-direction:column; gap:.5rem; align-items:flex-start;">
+					<li><a class="bmb-menu-link" href="#auto">AUTOMOTIVE</a></li>
+					<li><a class="bmb-menu-link" href="#packaging">PACKAGING</a></li>
+					<li><a class="bmb-menu-link" href="#preforms">PREFORMS</a></li>
+					<li><a class="bmb-menu-link" href="#tappi">TAPPI</a></li>
+					<li><a class="bmb-menu-link" href="#applicazioni">APPLICAZIONI SPECIALI</a></li>
+					<li><a class="bmb-menu-link" href="#brand">GRANDI PROGETTI</a></li>
+				</ul>
+			</div>
+		</div>
+		<div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:2rem; padding-top:2rem;">
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; font-weight:600;">SEDE CENTRALE</p>
+				<a class="bmb-btn bmb-btn--white bmb-btn--s" href="tel:+39000000000"><span class="bmb-btn__label">+39 035.22.99.99</span></a>
+			</div>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; font-weight:600;">SERVIZIO CLIENTI</p>
+				<a class="bmb-btn bmb-btn--white bmb-btn--s" href="tel:+39000000000"><span class="bmb-btn__label">+39 035.22.99.99</span></a>
+			</div>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; font-weight:600;">TROVA IL TUO REFERENTE BMB</p>
+				<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#contatti"><span class="bmb-btn__label">VAI A CONTATTI</span></a>
+			</div>
+		</div>
+		<div class="bmb-footer__text" style="text-align:center; padding-top:1.5rem; opacity:.6; font-size:.75rem;">
+			BMB - Anteprima statica - Identico al rendering del tema WordPress
+		</div>
+	</div>
+</footer>
+
+<!-- JS reali del tema (animazioni + smooth anchor + sticky header + menu mobile) -->
+<script src="../bmb-landing-theme/assets/js/animations.js"></script>
+<script src="../bmb-landing-theme/assets/js/navigation.js"></script>
+
+</body>
+</html>

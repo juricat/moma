@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BMB Landing - Anteprima locale</title>
+
+<!-- Google Fonts: Outfit (come fa il tema) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+
+<!-- CSS reali del tema -->
+<style>
+/* Inietta variabili customizer come fa wp_head */
+:root{
+	--bmb-primary: #0E294B;
+	--bmb-accent:  #0A75EB;
+}
+/* Banner di anteprima */
+.preview-banner{
+	background: linear-gradient(135deg,#0E294B,#0A75EB);
+	color:#fff; padding:.6rem 1rem; font-size:.875rem; text-align:center;
+	font-family:'Outfit',sans-serif;
+}
+.preview-banner code{
+	background: rgba(255,255,255,.15); padding:.1em .4em; border-radius:4px; font-size:.85em;
+}
+</style>
+<style>
+/* =========================================================
+   BMB Landing - Main stylesheet
+   Token reali da Figma: EeYq18DsFvUOgA4ox4Q08w (node 1006:2713)
+   ========================================================= */
+
+:root{
+	/* Brand colors (Figma BMB) */
+	--bmb-primary:        #0E294B;
+	--bmb-primary-dark:   #081A30;
+	--bmb-blue-2:         #135195;
+	--bmb-blue-3:         #0F5DBE;
+	--bmb-accent:         #0A75EB;
+	--bmb-light-blue:     #1FA0D8;
+	--bmb-blue-9:         #B9E9FF;
+	--bmb-blue-11:        #EDFAFF;
+	--bmb-blue-12:        #F8FCFF;
+	--bmb-blue-13:        #E3F0FF;
+	--bmb-grey-8:         #CAD5E2;
+	--bmb-grey-9:         #E2E8F0;
+	--bmb-grey-10:        #F1F5F9;
+	--bmb-grey-11:        #F3F3F3;
+	--bmb-white:          #FFFFFF;
+	--bmb-black:          #0E0E12;
+
+	/* Layout */
+	--bmb-header-h: 80px;
+	--bmb-radius-s: 4px;
+	--bmb-radius-m: 8px;
+	--bmb-radius-l: 10px;
+	--bmb-shadow-1: 0 4px 14px rgba(14, 41, 75, .08);
+	--bmb-shadow-2: 0 14px 40px rgba(14, 41, 75, .14);
+
+	--bmb-transition: 280ms cubic-bezier(.2,.7,.2,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+	html{ scroll-behavior:auto; }
+}
+
+body{
+	margin:0;
+	font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: clamp(1rem, .95rem + .25vw, 1.125rem);
+	font-weight: 300;
+	line-height: 1.55;
+	color: var(--bmb-primary);
+	background: var(--bmb-white);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+img,svg,video,iframe{ max-width:100%; }
+img{ height:auto; }
+
+a{ color: var(--bmb-accent); }
+
+.bmb-skip-link{
+	position:absolute; left:-9999px; top:auto;
+	width:1px; height:1px; overflow:hidden;
+}
+.bmb-skip-link:focus{
+	position:fixed; top:8px; left:8px; width:auto; height:auto;
+	padding:.6em 1em; background:var(--bmb-primary); color:#fff;
+	border-radius:8px; z-index:9999;
+}
+
+/* =================== Header ====================== */
+.bmb-header{
+	position:sticky; top:0; z-index:100;
+	background:rgba(255,255,255,.94);
+	backdrop-filter:saturate(180%) blur(12px);
+	-webkit-backdrop-filter:saturate(180%) blur(12px);
+	border-bottom:1px solid transparent;
+	transition: border-color var(--bmb-transition), box-shadow var(--bmb-transition);
+}
+.bmb-header[data-scrolled="true"]{
+	border-bottom-color: var(--bmb-grey-9);
+	box-shadow: var(--bmb-shadow-1);
+}
+.bmb-header__inner{
+	max-width:1440px;
+	margin-inline:auto;
+	padding: 0 clamp(1rem, 4vw, 2.5rem);
+	height: var(--bmb-header-h);
+	display:flex;
+	align-items:center;
+	gap: 1.5rem;
+}
+.bmb-header__brand{ flex:0 0 auto; }
+.bmb-header__title{
+	font-weight:700; font-size:1.25rem; color:var(--bmb-primary);
+	text-decoration:none; letter-spacing:-.02em;
+}
+.bmb-header__nav{
+	margin-left:auto;
+	display:flex; align-items:center; gap:1.75rem;
+}
+.bmb-menu{
+	list-style:none; margin:0; padding:0;
+	display:flex; gap:1.75rem; align-items:center;
+}
+.bmb-menu-link{
+	color:var(--bmb-primary);
+	text-decoration:none;
+	font-weight:500;
+	font-size: .9375rem;
+	padding:.5em 0;
+	position:relative;
+	transition: color var(--bmb-transition);
+	letter-spacing:.01em;
+}
+.bmb-menu-link::after{
+	content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+	background:var(--bmb-accent); transform:scaleX(0); transform-origin:left;
+	transition: transform var(--bmb-transition);
+}
+.bmb-menu-link:hover{ color:var(--bmb-accent); }
+.bmb-menu-link:hover::after,
+.current-menu-item .bmb-menu-link::after{ transform:scaleX(1); }
+
+.bmb-header__cta{ margin-left:.25rem; }
+
+.bmb-header__toggle{
+	display:none;
+	margin-left:auto;
+	background:transparent; border:0; padding:.5em;
+	cursor:pointer;
+}
+.bmb-burger{ display:inline-block; width:28px; height:20px; position:relative; }
+.bmb-burger span{
+	position:absolute; left:0; right:0; height:2px; background:var(--bmb-primary);
+	transition: transform var(--bmb-transition), top var(--bmb-transition), opacity var(--bmb-transition);
+}
+.bmb-burger span:nth-child(1){ top:2px; }
+.bmb-burger span:nth-child(2){ top:9px; }
+.bmb-burger span:nth-child(3){ top:16px; }
+[aria-expanded="true"] .bmb-burger span:nth-child(1){ top:9px; transform:rotate(45deg); }
+[aria-expanded="true"] .bmb-burger span:nth-child(2){ opacity:0; }
+[aria-expanded="true"] .bmb-burger span:nth-child(3){ top:9px; transform:rotate(-45deg); }
+
+@media (max-width: 900px){
+	.bmb-header__toggle{ display:inline-flex; }
+	.bmb-header__nav{
+		position:fixed; inset: var(--bmb-header-h) 0 0 0;
+		background:#fff;
+		flex-direction:column;
+		gap:1rem;
+		padding: 1.5rem clamp(1rem,4vw,2rem);
+		transform: translateX(100%);
+		transition: transform var(--bmb-transition);
+		overflow-y:auto;
+		align-items:flex-start;
+	}
+	.bmb-header__nav[data-open="true"]{ transform: translateX(0); }
+	.bmb-menu{ flex-direction:column; align-items:flex-start; gap:.5rem; width:100%; }
+	.bmb-menu-link{ font-size:1.25rem; padding:.5em 0; }
+	.bmb-header__cta{ width:100%; text-align:center; justify-content:center; }
+}
+
+/* =================== Footer ====================== */
+.bmb-footer{
+	background: var(--bmb-primary);
+	color: #fff;
+	padding: clamp(2rem,5vw,4rem) 0;
+	margin-top: clamp(3rem,6vw,5rem);
+}
+.bmb-footer__inner{
+	max-width:1440px;
+	margin-inline:auto;
+	padding-inline: clamp(1rem,4vw,2.5rem);
+	display:flex; flex-wrap:wrap; gap:1.5rem;
+	justify-content: space-between; align-items:center;
+}
+.bmb-footer__text{ font-size:.9rem; opacity:.85; }
+.bmb-footer-menu{
+	list-style:none; margin:0; padding:0;
+	display:flex; flex-wrap:wrap; gap:1.25rem;
+}
+.bmb-footer-menu .bmb-menu-link{ color:#fff; }
+.bmb-footer-menu .bmb-menu-link::after{ background:var(--bmb-light-blue); }
+.bmb-footer-menu .bmb-menu-link:hover{ color: var(--bmb-blue-9); }
+
+/* =================== Animations ====================== */
+[data-bmb-anim-in]{ opacity:0; will-change: transform, opacity; }
+[data-bmb-anim-in="none"]{ opacity:1; }
+
+[data-bmb-anim-in="fade"],
+[data-bmb-anim-in="fade-up"],
+[data-bmb-anim-in="fade-down"],
+[data-bmb-anim-in="fade-left"],
+[data-bmb-anim-in="fade-right"],
+[data-bmb-anim-in="zoom-in"],
+[data-bmb-anim-in="zoom-out"],
+[data-bmb-anim-in="slide-up"],
+[data-bmb-anim-in="slide-down"]{
+	transition: opacity 700ms cubic-bezier(.2,.7,.2,1), transform 700ms cubic-bezier(.2,.7,.2,1);
+}
+
+[data-bmb-anim-in="fade-up"]    { transform: translateY(40px); }
+[data-bmb-anim-in="fade-down"]  { transform: translateY(-40px); }
+[data-bmb-anim-in="fade-left"]  { transform: translateX(40px); }
+[data-bmb-anim-in="fade-right"] { transform: translateX(-40px); }
+[data-bmb-anim-in="zoom-in"]    { transform: scale(.92); }
+[data-bmb-anim-in="zoom-out"]   { transform: scale(1.08); }
+[data-bmb-anim-in="slide-up"]   { transform: translateY(80px); }
+[data-bmb-anim-in="slide-down"] { transform: translateY(-80px); }
+
+[data-bmb-anim-in].bmb-in-view{
+	opacity: 1 !important;
+	transform: none !important;
+}
+
+[data-bmb-anim-out].bmb-out-of-view{
+	opacity: 0;
+}
+[data-bmb-anim-out="fade-up"].bmb-out-of-view    { transform: translateY(-40px); }
+[data-bmb-anim-out="fade-down"].bmb-out-of-view  { transform: translateY(40px); }
+[data-bmb-anim-out="fade-left"].bmb-out-of-view  { transform: translateX(-40px); }
+[data-bmb-anim-out="fade-right"].bmb-out-of-view { transform: translateX(40px); }
+[data-bmb-anim-out="zoom-in"].bmb-out-of-view    { transform: scale(1.08); }
+[data-bmb-anim-out="zoom-out"].bmb-out-of-view   { transform: scale(.92); }
+
+@media (prefers-reduced-motion: reduce){
+	[data-bmb-anim-in], [data-bmb-anim-out]{
+		transition: none !important;
+		transform: none !important;
+		opacity: 1 !important;
+	}
+}
+
+/* =================== Generic helpers ====================== */
+.bmb-landing-wrap{ width:100%; }
+.bmb-404{ text-align:center; padding-block:6rem; }
+
+.bmb-section{
+	position:relative;
+	width:100%;
+	scroll-margin-top:80px;
+}
+.bmb-section--vp-s   { padding-block: clamp(1.5rem, 3vw, 2.5rem); }
+.bmb-section--vp-m   { padding-block: clamp(2.5rem, 5vw, 4rem); }
+.bmb-section--vp-l   { padding-block: clamp(4rem, 7vw, 6rem); }
+.bmb-section--vp-xl  { padding-block: clamp(6rem, 10vw, 9rem); }
+.bmb-section--vp-xxl { padding-block: clamp(8rem, 14vw, 13rem); }
+
+.bmb-section__inner{
+	margin-inline:auto;
+	width:100%;
+	padding-inline:clamp(1rem, 4vw, 3rem);
+}
+.bmb-section__inner--standard{ max-width:1200px; }
+.bmb-section__inner--wide{     max-width:1440px; }
+.bmb-section__inner--full{     max-width:100%; padding-inline:0; }
+
+.bmb-heading{
+	display:block;
+	margin:0 0 0.6em;
+	line-height:1.15;
+	letter-spacing:-0.01em;
+	scroll-margin-top:90px;
+}
+.bmb-heading--s    { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem); line-height:1.4; }
+.bmb-heading--m    { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); line-height:1.35; }
+.bmb-heading--l    { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem); line-height:1.3; }
+.bmb-heading--xl   { font-size: clamp(1.875rem, 1.6rem + 1.2vw, 2.5rem); line-height:1.2; }
+.bmb-heading--xxl  { font-size: clamp(2.25rem, 1.8rem + 2vw, 3.5rem); line-height:1.1; }
+.bmb-heading--xxxl { font-size: clamp(3rem, 2.2rem + 3.5vw, 5rem); line-height:1.05; }
+
+.bmb-heading--align-left   { text-align:left; }
+.bmb-heading--align-center { text-align:center; }
+.bmb-heading--align-right  { text-align:right; }
+.bmb-heading--uppercase    { text-transform:uppercase; letter-spacing:0.04em; }
+
+.bmb-heading__link{
+	color:inherit;
+	text-decoration:none;
+	border-bottom:2px solid transparent;
+	transition:border-color .2s ease, color .2s ease;
+}
+.bmb-heading__link:hover{
+	border-bottom-color:var(--bmb-accent, currentColor);
+}
+
+.bmb-paragraph{
+	margin: 0 0 1em;
+	line-height: 1.6;
+	color: inherit;
+	scroll-margin-top: 90px;
+}
+.bmb-paragraph--s   { font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem); }
+.bmb-paragraph--m   { font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem); }
+.bmb-paragraph--l   { font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); }
+.bmb-paragraph--xl  { font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); line-height:1.5; }
+
+.bmb-paragraph--align-left   { text-align:left; }
+.bmb-paragraph--align-center { text-align:center; margin-inline:auto; }
+.bmb-paragraph--align-right  { text-align:right; margin-inline-start:auto; }
+
+.bmb-paragraph--uppercase    { text-transform:uppercase; letter-spacing:0.05em; }
+
+/* maxWidth: il paragrafo abbraccia la lunghezza del testo */
+.bmb-paragraph--mw-content   { display:inline-block; max-width:100%; }
+.bmb-paragraph--mw-narrow    { max-width:60ch; }
+.bmb-paragraph--mw-medium    { max-width:75ch; }
+.bmb-paragraph--mw-full      { max-width:100%; }
+
+/* Quando align center con mw-content, mantiene il blocco ma centrato */
+.bmb-paragraph--align-center.bmb-paragraph--mw-content,
+.bmb-paragraph--align-center.bmb-paragraph--mw-narrow,
+.bmb-paragraph--align-center.bmb-paragraph--mw-medium{
+	display:block;
+	margin-inline:auto;
+	width:fit-content;
+}
+
+.bmb-paragraph strong{ font-weight:700; }
+.bmb-paragraph em    { font-style:italic; }
+.bmb-paragraph a{
+	color:var(--bmb-accent, #E63946);
+	text-decoration:underline;
+	text-underline-offset:.2em;
+	transition:opacity .2s;
+}
+.bmb-paragraph a:hover{ opacity:.75; }
+
+.bmb-list{
+	margin: 0 0 1.25em;
+	padding-inline-start: 1.4em;
+	line-height: 1.6;
+}
+.bmb-list li{ margin: .35em 0; }
+.bmb-list--s  { font-size: clamp(0.875rem,0.8rem+0.3vw,1rem); }
+.bmb-list--m  { font-size: clamp(1rem,0.95rem+0.3vw,1.0625rem); }
+.bmb-list--l  { font-size: clamp(1.0625rem,1rem+0.4vw,1.25rem); }
+.bmb-list--xl { font-size: clamp(1.25rem,1.1rem+0.5vw,1.5rem); }
+
+.bmb-list--marker-dot    { list-style: disc; }
+.bmb-list--marker-square { list-style: square; }
+.bmb-list--marker-none   { list-style: none; padding-inline-start: 0; }
+
+.bmb-list--marker-dash{ list-style:none; padding-inline-start:0; }
+.bmb-list--marker-dash > li{ position:relative; padding-inline-start:1.4em; }
+.bmb-list--marker-dash > li::before{
+	content:""; position:absolute; left:0; top:.7em;
+	width:.8em; height:2px; background:var(--bmb-accent,#E63946);
+}
+.bmb-list--marker-check{ list-style:none; padding-inline-start:0; }
+.bmb-list--marker-check > li{ position:relative; padding-inline-start:1.6em; }
+.bmb-list--marker-check > li::before{
+	content:"✓"; position:absolute; left:0; top:0;
+	color:var(--bmb-accent,#E63946); font-weight:700;
+}
+.bmb-list--marker-arrow{ list-style:none; padding-inline-start:0; }
+.bmb-list--marker-arrow > li{ position:relative; padding-inline-start:1.6em; }
+.bmb-list--marker-arrow > li::before{
+	content:"→"; position:absolute; left:0; top:0;
+	color:var(--bmb-accent,#E63946); font-weight:700;
+}
+
+.bmb-media{
+	margin:0 auto 1.5em;
+	display:block;
+	scroll-margin-top:90px;
+}
+.bmb-media--size-s    { max-width:320px; }
+.bmb-media--size-m    { max-width:540px; }
+.bmb-media--size-l    { max-width:800px; }
+.bmb-media--size-xl   { max-width:1100px; }
+.bmb-media--size-full { max-width:100%; }
+
+.bmb-media__frame{
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	background:var(--bmb-neutral-100,#F2F2F5);
+}
+.bmb-media--rounded-none .bmb-media__frame { border-radius:0; }
+.bmb-media--rounded-s    .bmb-media__frame { border-radius:6px; }
+.bmb-media--rounded-m    .bmb-media__frame { border-radius:12px; }
+.bmb-media--rounded-l    .bmb-media__frame { border-radius:24px; }
+.bmb-media--rounded-pill .bmb-media__frame { border-radius:9999px; }
+
+.bmb-media--ratio-auto .bmb-media__frame { aspect-ratio: auto; }
+.bmb-media--ratio-16-9 .bmb-media__frame { aspect-ratio: 16 / 9; }
+.bmb-media--ratio-4-3  .bmb-media__frame { aspect-ratio: 4 / 3; }
+.bmb-media--ratio-1-1  .bmb-media__frame { aspect-ratio: 1 / 1; }
+.bmb-media--ratio-3-4  .bmb-media__frame { aspect-ratio: 3 / 4; }
+.bmb-media--ratio-9-16 .bmb-media__frame { aspect-ratio: 9 / 16; }
+.bmb-media--ratio-21-9 .bmb-media__frame { aspect-ratio: 21 / 9; }
+
+.bmb-media__img,
+.bmb-media__video,
+.bmb-media__iframe{
+	position:absolute; inset:0;
+	width:100%; height:100%;
+	object-fit:cover;
+	border:0;
+	display:block;
+}
+.bmb-media--ratio-auto .bmb-media__img{
+	position:static;
+	width:100%; height:auto;
+}
+.bmb-media__placeholder{
+	position:absolute; inset:0;
+	display:flex; align-items:center; justify-content:center;
+	color:var(--bmb-neutral-500,#7A7A85);
+	font-size:.9em;
+	background:repeating-linear-gradient(45deg,#f2f2f5,#f2f2f5 10px,#e8e8ec 10px,#e8e8ec 20px);
+}
+.bmb-media__caption{
+	margin-top:.6em;
+	font-size:.875em;
+	color:var(--bmb-neutral-500,#7A7A85);
+	text-align:center;
+}
+.bmb-media__link{ display:block; }
+
+.bmb-cta-wrap{
+	margin: 1em 0;
+	display:flex;
+}
+.bmb-cta-wrap--align-left   { justify-content:flex-start; }
+.bmb-cta-wrap--align-center { justify-content:center; }
+.bmb-cta-wrap--align-right  { justify-content:flex-end; }
+
+.bmb-btn{
+	--btn-bg: var(--bmb-accent, #E63946);
+	--btn-color: #fff;
+	--btn-border: transparent;
+
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	gap:.55em;
+	padding: .9em 1.6em;
+	font-family:inherit;
+	font-weight:600;
+	line-height:1.2;
+	text-decoration:none;
+	border-radius:9999px;
+	border:2px solid var(--btn-border);
+	background:var(--btn-bg);
+	color:var(--btn-color);
+	cursor:pointer;
+	transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+	will-change:transform;
+}
+.bmb-btn:hover{
+	transform: translateY(-2px);
+	box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+.bmb-btn:active{ transform: translateY(0); }
+
+.bmb-btn--s  { font-size:.875rem; padding:.65em 1.2em; }
+.bmb-btn--m  { font-size:1rem;     padding:.85em 1.5em; }
+.bmb-btn--l  { font-size:1.125rem; padding:1em 1.8em; }
+.bmb-btn--xl { font-size:1.25rem;  padding:1.1em 2.1em; }
+.bmb-btn--full{ width:100%; }
+
+.bmb-btn--accent          { --btn-bg: var(--bmb-accent,#E63946); --btn-color:#fff; }
+.bmb-btn--primary         { --btn-bg: var(--bmb-primary,#0B1F3A); --btn-color:#fff; }
+.bmb-btn--white           { --btn-bg:#fff; --btn-color: var(--bmb-primary,#0B1F3A); }
+.bmb-btn--outline-accent  { --btn-bg:transparent; --btn-color: var(--bmb-accent,#E63946);  --btn-border: var(--bmb-accent,#E63946); }
+.bmb-btn--outline-primary { --btn-bg:transparent; --btn-color: var(--bmb-primary,#0B1F3A); --btn-border: var(--bmb-primary,#0B1F3A); }
+.bmb-btn--outline-accent:hover  { --btn-bg: var(--bmb-accent,#E63946);  --btn-color:#fff; }
+.bmb-btn--outline-primary:hover { --btn-bg: var(--bmb-primary,#0B1F3A); --btn-color:#fff; }
+.bmb-btn--ghost           { --btn-bg:transparent; --btn-color: currentColor; --btn-border: transparent; padding-inline:.4em; }
+.bmb-btn--ghost:hover     { box-shadow:none; transform:none; opacity:.75; }
+
+.bmb-btn__icon{
+	display:inline-flex;
+	transition: transform .25s ease;
+	font-size:1.05em;
+	line-height:1;
+}
+.bmb-btn:hover .bmb-btn__icon{ transform: translateX(3px); }
+
+</style>
+</head>
+<body class="bmb-landing">
+
+<div class="preview-banner">
+	Anteprima statica del tema BMB Landing - markup identico a quello che i blocchi Gutenberg generano.
+	Resize della finestra per vedere il responsive.
+</div>
+
+<!-- ===================== HEADER (header.php) ===================== -->
+<header class="bmb-header" data-bmb-header>
+	<div class="bmb-header__inner">
+		<div class="bmb-header__brand">
+			<a class="bmb-header__title" href="#">BMB</a>
+		</div>
+		<button class="bmb-header__toggle" aria-expanded="false" aria-controls="bmb-primary-menu" data-bmb-menu-toggle>
+			<span class="bmb-burger"><span></span><span></span><span></span></span>
+		</button>
+		<nav class="bmb-header__nav" id="bmb-primary-menu" aria-label="Menu principale">
+			<ul class="bmb-menu">
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#azienda" data-bmb-anchor="true">AZIENDA</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#macchine" data-bmb-anchor="true">MACCHINE</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#industries" data-bmb-anchor="true">INDUSTRIES</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#filosofia" data-bmb-anchor="true">FILOSOFIA PROGETTUALE</a></li>
+				<li class="bmb-menu-item"><a class="bmb-menu-link" href="#portfolio" data-bmb-anchor="true">PORTFOLIO</a></li>
+			</ul>
+			<a class="bmb-btn bmb-btn--accent bmb-btn--s bmb-header__cta" href="#contatti" data-bmb-anchor="true">CONTATTI</a>
+		</nav>
+	</div>
+</header>
+
+<main id="main" class="bmb-main">
+
+<!-- ===================== HERO (BMB Sezione + Titolo + CTA) ===================== -->
+<section class="bmb-section bmb-section--vp-xxl" id="azienda" data-bmb-anim-in="fade-up"
+	style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?w=2000&auto=format&fit=crop'); background-size:cover; background-position:center;">
+	<div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,41,75,.55) 0%, rgba(14,41,75,.75) 100%);"></div>
+	<div class="bmb-section__inner bmb-section__inner--wide" style="position:relative; text-align:center; color:#fff;">
+		<h1 class="bmb-heading bmb-heading--xxxl bmb-heading--align-center" style="font-weight:700; color:#fff;">
+			<span>Stampiamo soluzioni.<br>Modelliamo successi.<br>Dal 1967.</span>
+		</h1>
+		<div class="bmb-cta-wrap bmb-cta-wrap--align-center" style="gap:1rem; flex-wrap:wrap;">
+			<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#video">
+				<span class="bmb-btn__label">▶ GUARDA IL VIDEO</span>
+			</a>
+			<a class="bmb-btn bmb-btn--accent bmb-btn--m" href="#azienda" data-bmb-anchor="true">
+				<span class="bmb-btn__label">SCOPRI L'AZIENDA</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== MACCHINE (Sezione bianca con titolo + cards) ===================== -->
+<section class="bmb-section bmb-section--vp-xl" id="macchine" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide">
+
+		<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content"
+		   style="color:var(--bmb-accent); margin-bottom:.6rem;">
+			<strong>Macchine</strong>
+		</p>
+
+		<h2 class="bmb-heading bmb-heading--xxl bmb-heading--align-left" style="font-weight:600;">
+			<span>Per ogni prodotto, una<br>macchina adatta</span>
+		</h2>
+
+		<p class="bmb-paragraph bmb-paragraph--l bmb-paragraph--mw-medium" style="font-weight:300;">
+			Dal 2000 ad oggi, grazie a un'evoluzione costante, la gamma <strong>Full electric</strong>
+			può raggiungere le 1200 tonnellate, offrendo una soluzione performante, sostenibile
+			e competitiva per le esigenze più ampie del settore, garantendo precisione,
+			velocità e bassi consumi energetici.
+		</p>
+
+		<p class="bmb-paragraph bmb-paragraph--m bmb-paragraph--mw-content" style="margin-top:2rem;">
+			<strong>la nostra gamma è divisa in:</strong>
+		</p>
+
+		<div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-1">Tipologia</a>
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-2">Tipologia</a>
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-3">Tipologia</a>
+			<a class="bmb-btn bmb-btn--primary bmb-btn--s" href="#tipologia-4">Tipologia</a>
+		</div>
+
+		<!-- Cards orizzontali -->
+		<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.25rem;">
+			<article style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem;">
+				<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+					<div class="bmb-media__frame">
+						<img class="bmb-media__img" loading="lazy" alt="Macchina"
+						     src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&auto=format&fit=crop">
+					</div>
+				</figure>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-accent); margin-top:1rem;">▲ Tipologia</p>
+				<h3 class="bmb-heading bmb-heading--l" style="font-weight:500;"><span>Nome Macchina</span></h3>
+				<a class="bmb-btn bmb-btn--ghost bmb-btn--s" href="#dettaglio" style="padding:.4em 0; align-self:start;">→</a>
+			</article>
+			<article style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem;">
+				<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+					<div class="bmb-media__frame">
+						<img class="bmb-media__img" loading="lazy" alt="Macchina"
+						     src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&auto=format&fit=crop">
+					</div>
+				</figure>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-accent); margin-top:1rem;">▲ Tipologia</p>
+				<h3 class="bmb-heading bmb-heading--l" style="font-weight:500;"><span>Nome Macchina</span></h3>
+				<a class="bmb-btn bmb-btn--ghost bmb-btn--s" href="#dettaglio" style="padding:.4em 0; align-self:start;">→</a>
+			</article>
+			<article style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem;">
+				<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+					<div class="bmb-media__frame">
+						<img class="bmb-media__img" loading="lazy" alt="Macchina"
+						     src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop">
+					</div>
+				</figure>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-accent); margin-top:1rem;">▲ Tipologia</p>
+				<h3 class="bmb-heading bmb-heading--l" style="font-weight:500;"><span>Nome Macchina</span></h3>
+				<a class="bmb-btn bmb-btn--ghost bmb-btn--s" href="#dettaglio" style="padding:.4em 0; align-self:start;">→</a>
+			</article>
+		</div>
+
+		<div class="bmb-cta-wrap bmb-cta-wrap--align-left" style="margin-top:2rem;">
+			<a class="bmb-btn bmb-btn--primary bmb-btn--m" href="#catalogo">
+				<span class="bmb-btn__label">sfoglia il nostro catalogo macchine</span>
+				<span class="bmb-btn__icon">↗</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== CONSULENZA (split blu) ===================== -->
+<section class="bmb-section bmb-section--vp-l" id="consulenza" data-bmb-anim-in="fade-up"
+	style="background:transparent; padding:0;">
+	<div style="display:grid; grid-template-columns: 1.1fr 1fr; min-height:420px;">
+		<div style="background:url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop') center/cover;"></div>
+		<div style="background:var(--bmb-accent); color:#fff; padding:clamp(2rem,4vw,4rem); display:flex; flex-direction:column; justify-content:center;">
+			<h2 class="bmb-heading bmb-heading--xxl" style="color:#fff; font-weight:600;"><span>Consulenza</span></h2>
+			<p class="bmb-paragraph bmb-paragraph--l" style="color:#fff; font-weight:300;">
+				Il nostro ufficio tecnico è composto da un team di ingegneri e specialisti altamente qualificati nei settori della meccanica, del software e della progettazione elettrica.
+			</p>
+			<div class="bmb-cta-wrap" style="margin-top:1.25rem;">
+				<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#pacchetti">
+					<span class="bmb-btn__label">Scopri i pacchetti che offriamo</span>
+					<span class="bmb-btn__icon">↗</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div style="display:grid; grid-template-columns: 1fr 1.1fr; min-height:420px;" id="industries">
+		<div style="background:var(--bmb-accent); color:#fff; padding:clamp(2rem,4vw,4rem); display:flex; flex-direction:column; justify-content:center;">
+			<h2 class="bmb-heading bmb-heading--xxl" style="color:#fff; font-weight:600;"><span>Industries</span></h2>
+			<p class="bmb-paragraph bmb-paragraph--l" style="color:#fff; font-weight:300;">
+				Il nostro ufficio tecnico è composto da un team di ingegneri e specialisti altamente qualificati nei settori della meccanica, del software e della progettazione elettrica.
+			</p>
+			<div class="bmb-cta-wrap" style="margin-top:1.25rem;">
+				<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#filosofia" data-bmb-anchor="true">
+					<span class="bmb-btn__label">Scopri la nostra filosofia progettuale</span>
+					<span class="bmb-btn__icon">↗</span>
+				</a>
+			</div>
+		</div>
+		<div style="background:url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&auto=format&fit=crop') center/cover;"></div>
+	</div>
+</section>
+
+<!-- ===================== CASE STUDY ===================== -->
+<section class="bmb-section bmb-section--vp-xl" id="filosofia" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide">
+		<div style="background:var(--bmb-grey-10); border-radius:14px; padding:clamp(1.5rem,3vw,2.5rem); display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;">
+			<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+				<div class="bmb-media__frame">
+					<img class="bmb-media__img" loading="lazy" alt="Case study"
+					     src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format&fit=crop">
+				</div>
+			</figure>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content"
+				   style="color:var(--bmb-accent); background:var(--bmb-blue-13); padding:.3em .8em; border-radius:4px;">
+					<strong>tag editoriale</strong>
+				</p>
+				<h2 class="bmb-heading bmb-heading--xl" style="font-weight:600;">
+					<span>Titolo case study Case lorem ipsum dolores amet</span>
+				</h2>
+				<p class="bmb-paragraph bmb-paragraph--m">
+					Lorem ipsum dolor sit amet consectetur. Massa tellus mus nisl lacus orci. In donec scelerisque consequat tempor odio bibendum. Purus in pharetra.
+				</p>
+				<div class="bmb-cta-wrap">
+					<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#case">
+						<span class="bmb-btn__label">SCOPRI IL CASE</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="bmb-cta-wrap" style="margin-top:1.5rem;">
+			<a class="bmb-btn bmb-btn--accent bmb-btn--m bmb-btn--full" href="#stories">
+				<span class="bmb-btn__label">leggi altre storie di successo</span>
+				<span class="bmb-btn__icon">↗</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== AZIENDA (full bleed image + overlay) ===================== -->
+<section class="bmb-section bmb-section--vp-xl" id="portfolio" data-bmb-anim-in="zoom-in"
+	style="background-image:url('https://images.unsplash.com/photo-1565043666747-69f6646db940?w=2000&auto=format&fit=crop'); background-size:cover; background-position:center;">
+	<div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,41,75,.45) 0%, rgba(14,41,75,.7) 100%);"></div>
+	<div class="bmb-section__inner bmb-section__inner--wide" style="position:relative; text-align:center; color:#fff;">
+		<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content bmb-paragraph--align-center"
+		   style="color:#fff; opacity:.85;">About BMB</p>
+		<h2 class="bmb-heading bmb-heading--xxl bmb-heading--align-center" style="color:#fff; font-weight:600;">
+			<span>testo che richiama l'azienda</span>
+		</h2>
+		<div class="bmb-cta-wrap bmb-cta-wrap--align-center" style="gap:1rem; flex-wrap:wrap;">
+			<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#video">
+				<span class="bmb-btn__label">▶ GUARDA IL VIDEO</span>
+			</a>
+			<a class="bmb-btn bmb-btn--accent bmb-btn--m" href="#scopri">
+				<span class="bmb-btn__label">SCOPRI L'AZIENDA</span>
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="bmb-section bmb-section--vp-xl" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide">
+		<div style="background:var(--bmb-grey-10); border-radius:14px; padding:clamp(1.5rem,3vw,2.5rem); display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;">
+			<figure class="bmb-media bmb-media--image bmb-media--ratio-4-3 bmb-media--size-full bmb-media--rounded-m">
+				<div class="bmb-media__frame">
+					<img class="bmb-media__img" loading="lazy" alt="Team"
+					     src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&auto=format&fit=crop">
+				</div>
+			</figure>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase bmb-paragraph--mw-content"
+				   style="color:var(--bmb-accent);"><strong>team</strong></p>
+				<h2 class="bmb-heading bmb-heading--xl" style="font-weight:600;">
+					<span>Incontra il nostro fantastico team!</span>
+				</h2>
+				<p class="bmb-paragraph bmb-paragraph--m">
+					Il nostro team dell'ufficio tecnico BMB è composto da professionisti altamente qualificati, ognuno con competenze specifiche nel proprio settore.
+					Siamo un gruppo affiatato di ingegneri, progettisti tecnici, pronti a collaborare per offrire soluzioni innovative ed elevate qualità.
+				</p>
+				<div class="bmb-cta-wrap">
+					<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#team">
+						<span class="bmb-btn__label">SCOPRI IL TEAM</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== CTA finale ===================== -->
+<section class="bmb-section bmb-section--vp-l" id="contatti" data-bmb-anim-in="fade-up"
+	style="background:var(--bmb-accent); color:#fff;">
+	<div class="bmb-section__inner bmb-section__inner--wide" style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center;">
+		<div>
+			<figure class="bmb-media bmb-media--image bmb-media--ratio-1-1 bmb-media--size-full bmb-media--rounded-m">
+				<div class="bmb-media__frame">
+					<img class="bmb-media__img" loading="lazy" alt="Contatti"
+					     src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&auto=format&fit=crop">
+				</div>
+			</figure>
+		</div>
+		<div>
+			<h2 class="bmb-heading bmb-heading--xxl" style="color:#fff; font-weight:600;">
+				<span>siamo in tutto il mondo</span>
+			</h2>
+			<p class="bmb-paragraph bmb-paragraph--l" style="color:#fff; font-weight:300;">
+				cerca il consulente che fa per te
+			</p>
+			<div class="bmb-cta-wrap">
+				<a class="bmb-btn bmb-btn--white bmb-btn--m" href="#mappa">
+					<span class="bmb-btn__label">↗</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== Fiera ===================== -->
+<section class="bmb-section bmb-section--vp-m" data-bmb-anim-in="fade-up">
+	<div class="bmb-section__inner bmb-section__inner--wide" style="background:var(--bmb-grey-10); border-radius:10px; padding:1.5rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+		<div style="background:var(--bmb-primary); color:#fff; padding:1rem 1.5rem; border-radius:8px; font-weight:700; letter-spacing:.05em;">MECSPE</div>
+		<div style="flex:1;">
+			<p class="bmb-paragraph bmb-paragraph--s bmb-paragraph--uppercase" style="color:var(--bmb-primary); margin:0;"><strong>CI TROVI IN FIERA MECSPE</strong></p>
+			<p class="bmb-paragraph bmb-paragraph--m" style="margin:0;">dalle <strong>00:00</strong> alle <strong>00:00</strong> il <strong>00/00/2025</strong></p>
+		</div>
+		<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#fiera">↗</a>
+	</div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bmb-footer">
+	<div class="bmb-footer__inner" style="flex-direction:column; align-items:stretch;">
+		<div style="display:grid; grid-template-columns: auto repeat(3, 1fr); gap:3rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,.15);">
+			<div>
+				<div style="background:#fff; color:var(--bmb-primary); width:80px; height:80px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.5rem;">BMB</div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; opacity:.7; margin-top:1rem;">LE NOSTRE BUSINESS UNIT</p>
+			</div>
+			<div>
+				<h4 class="bmb-heading bmb-heading--s bmb-heading--uppercase" style="color:#fff; font-weight:600;"><span>MENU</span></h4>
+				<ul class="bmb-footer-menu" style="flex-direction:column; gap:.5rem; align-items:flex-start;">
+					<li><a class="bmb-menu-link" href="#azienda">AZIENDA</a></li>
+					<li><a class="bmb-menu-link" href="#macchine">MACCHINE</a></li>
+					<li><a class="bmb-menu-link" href="#industries">INDUSTRIES</a></li>
+					<li><a class="bmb-menu-link" href="#filosofia">FILOSOFIA PROGETTUALE</a></li>
+					<li><a class="bmb-menu-link" href="#portfolio">PORTFOLIO</a></li>
+					<li><a class="bmb-menu-link" href="#lavora">LAVORA CON NOI</a></li>
+				</ul>
+			</div>
+			<div>
+				<h4 class="bmb-heading bmb-heading--s bmb-heading--uppercase" style="color:#fff; font-weight:600;"><span>MACCHINE</span></h4>
+				<ul class="bmb-footer-menu" style="flex-direction:column; gap:.5rem; align-items:flex-start;">
+					<li><a class="bmb-menu-link" href="#hybrid">eXOn HYBRID</a></li>
+					<li><a class="bmb-menu-link" href="#hp">eXOn HP</a></li>
+					<li><a class="bmb-menu-link" href="#fe">eXOn FULL ELECTRIC</a></li>
+					<li><a class="bmb-menu-link" href="#hl">eXOn HL</a></li>
+					<li><a class="bmb-menu-link" href="#io">IO</a></li>
+				</ul>
+			</div>
+			<div>
+				<h4 class="bmb-heading bmb-heading--s bmb-heading--uppercase" style="color:#fff; font-weight:600;"><span>INDUSTRY</span></h4>
+				<ul class="bmb-footer-menu" style="flex-direction:column; gap:.5rem; align-items:flex-start;">
+					<li><a class="bmb-menu-link" href="#auto">AUTOMOTIVE</a></li>
+					<li><a class="bmb-menu-link" href="#packaging">PACKAGING</a></li>
+					<li><a class="bmb-menu-link" href="#preforms">PREFORMS</a></li>
+					<li><a class="bmb-menu-link" href="#tappi">TAPPI</a></li>
+					<li><a class="bmb-menu-link" href="#applicazioni">APPLICAZIONI SPECIALI</a></li>
+					<li><a class="bmb-menu-link" href="#brand">GRANDI PROGETTI</a></li>
+				</ul>
+			</div>
+		</div>
+		<div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:2rem; padding-top:2rem;">
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; font-weight:600;">SEDE CENTRALE</p>
+				<a class="bmb-btn bmb-btn--white bmb-btn--s" href="tel:+39000000000"><span class="bmb-btn__label">+39 035.22.99.99</span></a>
+			</div>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; font-weight:600;">SERVIZIO CLIENTI</p>
+				<a class="bmb-btn bmb-btn--white bmb-btn--s" href="tel:+39000000000"><span class="bmb-btn__label">+39 035.22.99.99</span></a>
+			</div>
+			<div>
+				<p class="bmb-paragraph bmb-paragraph--s" style="color:#fff; font-weight:600;">TROVA IL TUO REFERENTE BMB</p>
+				<a class="bmb-btn bmb-btn--accent bmb-btn--s" href="#contatti"><span class="bmb-btn__label">VAI A CONTATTI</span></a>
+			</div>
+		</div>
+		<div class="bmb-footer__text" style="text-align:center; padding-top:1.5rem; opacity:.6; font-size:.75rem;">
+			BMB - Anteprima statica - Identico al rendering del tema WordPress
+		</div>
+	</div>
+</footer>
+
+<!-- JS reali del tema (animazioni + smooth anchor + sticky header + menu mobile) -->
+<script>
+/**
+ * BMB Animations - Intersection Observer per entrata e uscita.
+ * Smooth scroll per i link che puntano ad ancore interne.
+ */
+( function () {
+	'use strict';
+
+	const reduceMotion = window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+
+	function initAnimations(){
+		if ( reduceMotion ) return;
+		if ( ! ( 'IntersectionObserver' in window ) ) return;
+
+		const inEls  = document.querySelectorAll( '[data-bmb-anim-in]:not([data-bmb-anim-in="none"])' );
+		const outEls = document.querySelectorAll( '[data-bmb-anim-out]:not([data-bmb-anim-out="none"])' );
+
+		const inObserver = new IntersectionObserver( function ( entries ) {
+			entries.forEach( function ( entry ) {
+				if ( entry.isIntersecting ) {
+					const delay = parseInt( entry.target.getAttribute( 'data-bmb-anim-delay' ) || '0', 10 );
+					setTimeout( function () {
+						entry.target.classList.add( 'bmb-in-view' );
+						entry.target.classList.remove( 'bmb-out-of-view' );
+					}, delay );
+					inObserver.unobserve( entry.target );
+				}
+			} );
+		}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' } );
+
+		inEls.forEach( function ( el ) { inObserver.observe( el ); } );
+
+		// Out animations: reagiscono quando l'elemento esce dal viewport scrollando.
+		const outObserver = new IntersectionObserver( function ( entries ) {
+			entries.forEach( function ( entry ) {
+				if ( ! entry.isIntersecting && entry.target.classList.contains( 'bmb-in-view' ) ) {
+					entry.target.classList.add( 'bmb-out-of-view' );
+				} else if ( entry.isIntersecting ) {
+					entry.target.classList.remove( 'bmb-out-of-view' );
+				}
+			} );
+		}, { threshold: 0 } );
+
+		outEls.forEach( function ( el ) { outObserver.observe( el ); } );
+	}
+
+	function initSmoothAnchors(){
+		document.addEventListener( 'click', function ( e ) {
+			const link = e.target.closest( 'a[href^="#"], a[data-bmb-anchor="true"]' );
+			if ( ! link ) return;
+			const href = link.getAttribute( 'href' ) || '';
+			if ( href.length < 2 || href.charAt( 0 ) !== '#' ) return;
+
+			const target = document.getElementById( href.slice( 1 ) );
+			if ( ! target ) return;
+
+			e.preventDefault();
+			const headerH = parseInt( getComputedStyle( document.documentElement ).getPropertyValue( '--bmb-header-h' ) || '80', 10 );
+			const top = target.getBoundingClientRect().top + window.pageYOffset - headerH - 8;
+			window.scrollTo( {
+				top: top,
+				behavior: reduceMotion ? 'auto' : 'smooth'
+			} );
+
+			// Aggiorna URL senza ricarica
+			history.pushState( null, '', href );
+
+			// Chiude menu mobile se aperto
+			const nav = document.getElementById( 'bmb-primary-menu' );
+			if ( nav && nav.dataset.open === 'true' ) {
+				nav.dataset.open = 'false';
+				const tog = document.querySelector( '[data-bmb-menu-toggle]' );
+				if ( tog ) tog.setAttribute( 'aria-expanded', 'false' );
+			}
+		} );
+	}
+
+	function initStickyHeader(){
+		const header = document.querySelector( '[data-bmb-header]' );
+		if ( ! header ) return;
+		const onScroll = function () {
+			header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false';
+		};
+		onScroll();
+		window.addEventListener( 'scroll', onScroll, { passive: true } );
+	}
+
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', function () {
+			initAnimations();
+			initSmoothAnchors();
+			initStickyHeader();
+		} );
+	} else {
+		initAnimations();
+		initSmoothAnchors();
+		initStickyHeader();
+	}
+} )();
+
+;
+/**
+ * BMB Navigation - menu mobile.
+ */
+( function () {
+	'use strict';
+	function init(){
+		const toggle = document.querySelector( '[data-bmb-menu-toggle]' );
+		const nav    = document.getElementById( 'bmb-primary-menu' );
+		if ( ! toggle || ! nav ) return;
+
+		toggle.addEventListener( 'click', function () {
+			const open = toggle.getAttribute( 'aria-expanded' ) === 'true';
+			toggle.setAttribute( 'aria-expanded', open ? 'false' : 'true' );
+			nav.dataset.open = open ? 'false' : 'true';
+			document.body.style.overflow = open ? '' : 'hidden';
+		} );
+
+		// Chiudi al resize > breakpoint
+		window.addEventListener( 'resize', function () {
+			if ( window.innerWidth > 900 ) {
+				toggle.setAttribute( 'aria-expanded', 'false' );
+				nav.dataset.open = 'false';
+				document.body.style.overflow = '';
+			}
+		} );
+	}
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', init );
+	} else { init(); }
+} )();
+
+</script>
+</body>
+</html>
