@@ -14,8 +14,8 @@ function bmb_customize_register( $wp_customize ) {
 		'priority' => 30,
 	) );
 
-	$wp_customize->add_setting( 'bmb_primary_color',  array( 'default' => '#0B1F3A', 'sanitize_callback' => 'sanitize_hex_color' ) );
-	$wp_customize->add_setting( 'bmb_accent_color',   array( 'default' => '#E63946', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_setting( 'bmb_primary_color',  array( 'default' => '#0E294B', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_setting( 'bmb_accent_color',   array( 'default' => '#0A75EB', 'sanitize_callback' => 'sanitize_hex_color' ) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'bmb_primary_color', array(
 		'label'   => __( 'Colore Primario', 'bmb-landing' ),
@@ -48,8 +48,8 @@ add_action( 'customize_register', 'bmb_customize_register' );
  * Inietta le variabili CSS dal customizer.
  */
 function bmb_customizer_css() {
-	$primary = get_theme_mod( 'bmb_primary_color', '#0B1F3A' );
-	$accent  = get_theme_mod( 'bmb_accent_color',  '#E63946' );
+	$primary = get_theme_mod( 'bmb_primary_color', '#0E294B' );
+	$accent  = get_theme_mod( 'bmb_accent_color',  '#0A75EB' );
 	?>
 	<style id="bmb-customizer-vars">
 		:root{
