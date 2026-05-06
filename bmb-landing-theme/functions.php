@@ -58,6 +58,12 @@ function bmb_enqueue_assets() {
 		BMB_THEME_VERSION
 	);
 	wp_enqueue_style(
+		'bmb-patterns',
+		BMB_THEME_URI . '/assets/css/patterns.css',
+		array( 'bmb-main' ),
+		BMB_THEME_VERSION
+	);
+	wp_enqueue_style(
 		'bmb-fonts',
 		'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap',
 		array(),
@@ -137,6 +143,7 @@ add_action( 'init', 'bmb_register_blocks' );
 
 require_once BMB_THEME_DIR . '/inc/menu-walker.php';
 require_once BMB_THEME_DIR . '/inc/customizer.php';
+require_once BMB_THEME_DIR . '/inc/block-patterns.php';
 
 /**
  * Allow SVG uploads (utile per loghi/icone Figma)

@@ -1,0 +1,135 @@
+/* =========================================================
+   BMB - Pattern compositions (style overrides per blocchi
+   core usati dentro i pattern: cover, columns, group)
+   ========================================================= */
+
+/* --- Hero/About cover --- */
+.bmb-pattern-hero,
+.bmb-pattern-about{
+	color:#fff;
+}
+.bmb-pattern-hero .wp-block-cover__inner-container,
+.bmb-pattern-about .wp-block-cover__inner-container{
+	max-width: 1240px;
+	margin-inline: auto;
+	padding: clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2rem);
+	text-align: center;
+}
+.bmb-pattern-hero .bmb-heading,
+.bmb-pattern-about .bmb-heading{
+	color:#fff;
+}
+.bmb-pattern-hero .bmb-paragraph,
+.bmb-pattern-about .bmb-paragraph{
+	color:rgba(255,255,255,.92);
+}
+.bmb-pattern-hero .wp-block-buttons,
+.bmb-pattern-about .wp-block-buttons{
+	display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;
+}
+
+/* --- Split: rimuovi gap tra colonne, immagine full --- */
+.is-style-bmb-split,
+.bmb-split{
+	gap: 0 !important;
+}
+.is-style-bmb-split .wp-block-column,
+.bmb-split .wp-block-column{
+	margin: 0;
+}
+.bmb-split__media{
+	min-height: clamp(280px, 40vw, 480px);
+	overflow: hidden;
+	position: relative;
+}
+.bmb-split__media .wp-block-image,
+.bmb-split__media figure{
+	margin:0; height:100%; width:100%;
+}
+.bmb-split__media img{
+	width:100%; height:100%; object-fit:cover; display:block;
+}
+.bmb-split__panel{
+	display:flex !important;
+	flex-direction:column;
+	justify-content:center;
+	gap: 1rem;
+}
+.bmb-split__panel .bmb-heading{ color:#fff !important; }
+.bmb-split__panel .bmb-paragraph{ color:#fff !important; }
+
+/* --- Card a colonne (macchine) --- */
+.bmb-cards{
+	gap: 1.25rem !important;
+}
+.bmb-cards .wp-block-column{
+	display:flex; flex-direction:column; gap:.75rem;
+	border-radius:10px;
+	transition: transform var(--bmb-transition), box-shadow var(--bmb-transition);
+}
+.bmb-cards .wp-block-column:hover{
+	transform: translateY(-4px);
+	box-shadow: var(--bmb-shadow-2);
+}
+.bmb-cards .bmb-heading{ margin: 0; }
+.bmb-cards .bmb-paragraph{ margin: 0; }
+.bmb-cards .bmb-cta-wrap{ margin-top:auto; }
+
+/* --- Card split (case study, team) --- */
+.bmb-card-split{
+	gap: clamp(1.5rem, 3vw, 2.5rem) !important;
+}
+.bmb-card-split .bmb-media{ margin: 0; }
+
+/* --- Helper: forza colore bianco dentro sezioni con sfondo navy/accent --- */
+.bmb-section.has-primary-background-color *,
+.bmb-section[style*="#0E294B"] .bmb-heading,
+.bmb-section[style*="#0E294B"] .bmb-paragraph,
+.bmb-section[style*="#0A75EB"] .bmb-heading,
+.bmb-section[style*="#0A75EB"] .bmb-paragraph{
+	color:#fff;
+}
+
+/* --- Buttons inside wp-block-buttons (Gutenberg flex container) --- */
+.wp-block-buttons .bmb-cta-wrap{
+	margin: 0;
+}
+
+/* --- Liste senza marker dentro footer --- */
+.bmb-section.has-background[style*="#0E294B"] .bmb-list,
+.bmb-section.has-background[style*="#0E294B"] .bmb-list a,
+.bmb-section.has-background[style*="#0E294B"] li{
+	color:#fff;
+}
+.bmb-section.has-background[style*="#0E294B"] .bmb-list{
+	padding-inline-start: 0;
+	display:flex; flex-direction:column; gap:.4rem;
+}
+
+/* --- Responsive split: stack su mobile --- */
+@media (max-width: 781px){
+	.bmb-split__media{
+		min-height: 260px;
+	}
+}
+
+/* --- Larghezza naturale di RichText.Content paragraph (workaround display) --- */
+.bmb-paragraph--mw-content{
+	width: fit-content;
+	max-width: 100%;
+}
+
+/* --- Sovrascrive default del wp-block-cover image che ha aspect-ratio strano --- */
+.wp-block-cover.bmb-pattern-hero,
+.wp-block-cover.bmb-pattern-about{
+	min-height: 520px;
+}
+@media (min-width: 900px){
+	.wp-block-cover.bmb-pattern-hero{ min-height: 720px; }
+}
+
+/* --- Neutralizza il padding default di .wp-block-cover quando dentro section BMB --- */
+.bmb-section .wp-block-cover{ padding: 0; }
+
+/* --- Header CTA piccola dentro pattern --- */
+.bmb-header__cta.bmb-btn--s{ font-size:.875rem; padding:.6em 1.2em; }

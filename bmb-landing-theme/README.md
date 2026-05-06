@@ -7,7 +7,17 @@ Tema landing-page completamente gestibile via Gutenberg, con blocchi custom in R
 1. Comprimi la cartella `bmb-landing-theme` in un file `.zip` (oppure usa `bmb-landing-theme.zip` se già fornito).
 2. In WordPress: **Aspetto → Temi → Aggiungi nuovo → Carica tema** → seleziona lo zip → **Installa ora** → **Attiva**.
 3. Vai su **Impostazioni → Lettura** → seleziona "Una pagina statica" e imposta una pagina come Home.
-4. Modifica la Home con l'editor Gutenberg. Nella categoria **BMB Landing** trovi i blocchi:
+4. Modifica la Home con l'editor Gutenberg.
+
+## Per ricreare il design del Figma in 1 click: usa i **Pattern**
+
+In Gutenberg apri l'inserter e clicca sul tab **Pattern** → categoria **BMB Landing**.
+Trovi 8 sezioni pixel-perfect pronte da inserire (e poi modificabili): `Hero full-bleed`,
+`Sezione Macchine (cards)`, `Split immagine + accent`, `Card Case Study`, `About full-bleed`,
+`Banner accent (siamo nel mondo)`, `Banda Fiera/Evento`, `Footer`. Esiste anche
+**Landing completa** che inserisce tutte le sezioni in una pagina sola.
+
+## Blocchi disponibili (categoria "BMB Landing")
    - **BMB Sezione** (contenitore con ID di ancoraggio + animazioni + sfondo)
    - **BMB Titolo** (H1-H6, dimensioni S/M/L/XL/XXL/XXXL, peso 300-800, MAIUSCOLO, link esterno o ancora interna)
    - **BMB Paragrafo** (grassetto/corsivo/link, dimensioni, MAIUSCOLO, larghezza adattata al testo o massima)
