@@ -55,78 +55,12 @@ function bmb_register_patterns() {
 	 *  catalogo nav-blu a sx; carosello card che bleed a dx con dots.
 	 * ============================================================ */
 	register_block_pattern( 'bmb/section-machines', array(
-		'title'         => __( 'BMB - Sezione Macchine (carosello)', 'bmb-landing' ),
-		'description'   => __( 'Sezione macchine pixel-perfect: testo + chip a sinistra, carosello card che bleed a destra con dot pagination, CTA catalogo navy con quadrato bianco.', 'bmb-landing' ),
+		'title'         => __( 'BMB - Sezione Macchine (carosello editabile)', 'bmb-landing' ),
+		'description'   => __( 'Inserisce il blocco BMB Sezione Macchine pre-popolato. Tutti i contenuti (titolo, paragrafo, tag con icona/URL, card con immagine/nome/URL, banner CTA) sono modificabili dall\'editor.', 'bmb-landing' ),
 		'categories'    => array( 'bmb' ),
 		'keywords'      => array( 'macchine', 'macchinari', 'carousel', 'rail' ),
 		'viewportWidth' => 1440,
-		'content'       => '<!-- wp:html -->
-<section class="bmb-machines-section" id="macchine" data-bmb-anim-in="fade-up" data-bmb-anim-out="none">
-  <div class="bmb-machines-section__inner">
-
-    <div class="bmb-machines-section__left">
-      <span class="bmb-eyebrow-pill">Macchinari</span>
-      <h2 class="bmb-machines__title">Per ogni prodotto, una macchina adatta</h2>
-      <p class="bmb-machines__lead">Dal 2000 ad oggi, grazie a un\'evoluzione costante, la gamma <strong>Full electric</strong> può raggiungere le 1300 tonnellate, offrendo una soluzione performante, sostenibile e compatta per le esigenze più spinte del settore, garantendo precisione, velocità e bassi consumi energetici.</p>
-      <p class="bmb-machines__subtitle">la nostra gamma è divisa in:</p>
-      <div class="bmb-typology-chips">
-        <a href="#tipologia-1" class="bmb-typology-chip"><span class="material-symbols-sharp bmb-typology-chip__icon">category</span>Tipologia</a>
-        <a href="#tipologia-2" class="bmb-typology-chip"><span class="material-symbols-sharp bmb-typology-chip__icon">category</span>Tipologia</a>
-        <a href="#tipologia-3" class="bmb-typology-chip"><span class="material-symbols-sharp bmb-typology-chip__icon">category</span>Tipologia</a>
-        <a href="#tipologia-4" class="bmb-typology-chip"><span class="material-symbols-sharp bmb-typology-chip__icon">category</span>Tipologia</a>
-      </div>
-      <a href="#catalogo" class="bmb-catalog-cta">
-        <span class="bmb-catalog-cta__label">sfoglia il nostro catalogo macchine.</span>
-        <span class="bmb-catalog-cta__arrow" aria-hidden="true">↗</span>
-      </a>
-    </div>
-
-    <div class="bmb-machines-section__right">
-      <div class="bmb-cards-rail" data-bmb-rail role="region" aria-label="Carosello macchine">
-        <article class="bmb-card-machine">
-          <div class="bmb-card-machine__media"><img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&auto=format&fit=crop" alt="Nome Macchina" loading="lazy"/></div>
-          <span class="bmb-card-machine__chip"><span class="material-symbols-sharp">category</span>Tipologia</span>
-          <div class="bmb-card-machine__footer">
-            <h3 class="bmb-card-machine__name">Nome Macchina</h3>
-            <a href="#dettaglio-1" class="bmb-card-machine__cta" aria-label="Vai al dettaglio macchina">↗</a>
-          </div>
-        </article>
-        <article class="bmb-card-machine">
-          <div class="bmb-card-machine__media"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&auto=format&fit=crop" alt="Nome Macchina" loading="lazy"/></div>
-          <span class="bmb-card-machine__chip"><span class="material-symbols-sharp">category</span>Tipologia</span>
-          <div class="bmb-card-machine__footer">
-            <h3 class="bmb-card-machine__name">Nome Macchina</h3>
-            <a href="#dettaglio-2" class="bmb-card-machine__cta" aria-label="Vai al dettaglio macchina">↗</a>
-          </div>
-        </article>
-        <article class="bmb-card-machine">
-          <div class="bmb-card-machine__media"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&auto=format&fit=crop" alt="Nome Macchina" loading="lazy"/></div>
-          <span class="bmb-card-machine__chip"><span class="material-symbols-sharp">category</span>Tipologia</span>
-          <div class="bmb-card-machine__footer">
-            <h3 class="bmb-card-machine__name">Nome Macchina</h3>
-            <a href="#dettaglio-3" class="bmb-card-machine__cta" aria-label="Vai al dettaglio macchina">↗</a>
-          </div>
-        </article>
-        <article class="bmb-card-machine">
-          <div class="bmb-card-machine__media"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=900&auto=format&fit=crop" alt="Nome Macchina" loading="lazy"/></div>
-          <span class="bmb-card-machine__chip"><span class="material-symbols-sharp">category</span>Tipologia</span>
-          <div class="bmb-card-machine__footer">
-            <h3 class="bmb-card-machine__name">Nome Macchina</h3>
-            <a href="#dettaglio-4" class="bmb-card-machine__cta" aria-label="Vai al dettaglio macchina">↗</a>
-          </div>
-        </article>
-      </div>
-      <div class="bmb-cards-rail__dots" role="tablist" aria-label="Pagina carosello">
-        <button type="button" class="bmb-cards-rail__dot bmb-cards-rail__dot--active" data-bmb-rail-dot="0" aria-label="Vai alla card 1"></button>
-        <button type="button" class="bmb-cards-rail__dot" data-bmb-rail-dot="1" aria-label="Vai alla card 2"></button>
-        <button type="button" class="bmb-cards-rail__dot" data-bmb-rail-dot="2" aria-label="Vai alla card 3"></button>
-        <button type="button" class="bmb-cards-rail__dot" data-bmb-rail-dot="3" aria-label="Vai alla card 4"></button>
-      </div>
-    </div>
-
-  </div>
-</section>
-<!-- /wp:html -->',
+		'content'       => '<!-- wp:bmb/machines /-->',
 	) );
 
 	/* ============================================================

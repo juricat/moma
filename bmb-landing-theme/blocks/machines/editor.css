@@ -1,0 +1,33 @@
+/**
+ * BMB Machines block - editor-only adjustments.
+ */
+
+/* Container del blocco nell'editor: full width senza margini Gutenberg */
+.editor-styles-wrapper .wp-block-bmb-machines{
+	max-width: 100%;
+}
+.editor-styles-wrapper .bmb-machines-section{
+	scroll-margin-top: 0;
+}
+.editor-styles-wrapper .bmb-cards-rail--editor{
+	overflow-x: auto;
+}
+.editor-styles-wrapper .bmb-card-machine__media{
+	min-height: 180px;
+}
+.editor-styles-wrapper .bmb-typology-chip,
+.editor-styles-wrapper .bmb-eyebrow-pill{
+	cursor: text;
+}
+
+/* Repeater rows nell'inspector */
+.bmb-repeater-row{
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 12px;
+	margin-bottom: 12px;
+	background: #fafafa;
+}
+.bmb-repeater-row .components-base-control{
+	margin-bottom: 8px;
+}

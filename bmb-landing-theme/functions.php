@@ -141,7 +141,7 @@ add_filter( 'block_categories_all', 'bmb_block_category', 10, 1 );
  * Register all custom blocks via block.json
  */
 function bmb_register_blocks() {
-	$blocks = array( 'section', 'heading', 'paragraph', 'media', 'cta', 'list' );
+	$blocks = array( 'section', 'heading', 'paragraph', 'media', 'cta', 'list', 'machines' );
 	foreach ( $blocks as $block ) {
 		register_block_type( BMB_THEME_DIR . '/blocks/' . $block );
 	}

@@ -435,7 +435,7 @@
 	display: inline-flex; align-items: center; gap: .45rem;
 	background: var(--bmb-white);
 	color: var(--bmb-primary);
-	border-radius: 9999px;
+	border-radius: 3px;
 	padding: .5rem .9rem;
 	font-size: .875rem;
 	font-weight: 500;

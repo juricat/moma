@@ -1,0 +1,18 @@
+/**
+ * BMB Machines block - chip card a 3px (Figma spec).
+ * Lo stile principale della sezione vive in assets/css/patterns.css
+ * (caricato globalmente). Qui solo le micro-correzioni del blocco.
+ */
+
+/* Card chip: angoli a 3px (era pill) */
+.bmb-card-machine__chip{
+	border-radius: 3px !important;
+}
+
+/* Pattern container del blocco custom */
+.wp-block-bmb-machines{
+	display: block;
+}
+.wp-block-bmb-machines.bmb-machines-section{
+	margin-block: 0;
+}

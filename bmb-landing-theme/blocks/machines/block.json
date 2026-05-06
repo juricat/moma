@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bmb/machines",
+	"title": "BMB Sezione Macchine (carosello)",
+	"category": "bmb",
+	"icon": "screenoptions",
+	"description": "Sezione macchine completamente editabile: chip + titolo + paragrafo (rich text con bold/elenco) + tag con icona/URL + CTA catalogo + carosello card con immagine/nome/URL e icona per ogni card.",
+	"keywords": ["macchine", "macchinari", "carosello", "rail", "bmb"],
+	"supports": {
+		"html": false,
+		"anchor": false,
+		"align": ["full"],
+		"spacing": { "margin": true }
+	},
+	"attributes": {
+		"anchorId":  { "type": "string", "default": "macchine" },
+		"eyebrow":   { "type": "string", "default": "Macchinari" },
+		"title":     { "type": "string", "default": "Per ogni prodotto, una macchina adatta" },
+		"lead":      { "type": "string", "default": "Dal 2000 ad oggi, grazie a un'evoluzione costante, la gamma <strong>Full electric</strong> può raggiungere le 1300 tonnellate, offrendo una soluzione performante, sostenibile e compatta per le esigenze più spinte del settore, garantendo precisione, velocità e bassi consumi energetici." },
+		"subtitle":  { "type": "string", "default": "la nostra gamma è divisa in:" },
+		"tags":      { "type": "array",  "default": [
+			{ "label": "Tipologia", "icon": "category", "url": "" },
+			{ "label": "Tipologia", "icon": "category", "url": "" },
+			{ "label": "Tipologia", "icon": "category", "url": "" },
+			{ "label": "Tipologia", "icon": "category", "url": "" }
+		] },
+		"ctaLabel":  { "type": "string", "default": "sfoglia il nostro catalogo macchine." },
+		"ctaUrl":    { "type": "string", "default": "#catalogo" },
+		"cards":     { "type": "array",  "default": [
+			{ "imageId": 0, "imageUrl": "", "alt": "", "tag": "Tipologia", "icon": "category", "name": "Nome Macchina", "url": "" },
+			{ "imageId": 0, "imageUrl": "", "alt": "", "tag": "Tipologia", "icon": "category", "name": "Nome Macchina", "url": "" },
+			{ "imageId": 0, "imageUrl": "", "alt": "", "tag": "Tipologia", "icon": "category", "name": "Nome Macchina", "url": "" }
+		] }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./editor.css",
+	"style":        "file:./style.css"
+}
