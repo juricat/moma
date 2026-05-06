@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Air Drawing — disegna in aria con la videocamera</title>
+
+<!-- Google Fonts (Roboto) + Material Symbols (Google design system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
+<!-- MediaPipe Hands (Google) -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+<style>
+/* ===== Material Design 3 — palette baseline ===== */
+:root{
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-on-primary-container: #21005D;
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-secondary-container: #E8DEF8;
+  --md-sys-color-surface: #FEF7FF;
+  --md-sys-color-surface-container: #F3EDF7;
+  --md-sys-color-surface-container-high: #ECE6F0;
+  --md-sys-color-on-surface: #1D1B20;
+  --md-sys-color-on-surface-variant: #49454F;
+  --md-sys-color-outline: #79747E;
+  --md-sys-color-error: #B3261E;
+  --md-sys-color-tertiary: #7D5260;
+
+  --md-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
+  --md-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
+  --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.30);
+
+  --radius-xl: 28px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Roboto', system-ui, sans-serif;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Top App Bar (Material 3) ===== */
+.app-bar{
+  display:flex; align-items:center; gap:16px;
+  padding: 12px 20px;
+  background: var(--md-sys-color-surface-container);
+  box-shadow: var(--md-elevation-1);
+  position: sticky; top:0; z-index: 5;
+}
+.app-bar .brand{
+  display:flex; align-items:center; gap:12px;
+}
+.app-bar .brand-mark{
+  width:36px; height:36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-tertiary));
+  display:grid; place-items:center; color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-elevation-1);
+}
+.app-bar h1{
+  font-size: 20px; font-weight: 500; margin: 0;
+  letter-spacing: .15px;
+}
+.app-bar .sub{
+  margin-left: 4px;
+  font-size: 12px; color: var(--md-sys-color-on-surface-variant);
+}
+.app-bar .spacer{ flex:1 }
+
+.status-chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding: 6px 12px; border-radius: var(--radius-pill);
+  background: var(--md-sys-color-surface-container-high);
+  font-size: 12px; color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-outline);
+}
+.status-chip .dot{
+  width:8px; height:8px; border-radius:50%;
+  background:#bbb; transition: background .2s;
+}
+.status-chip.live .dot{ background: #2e7d32; box-shadow: 0 0 0 3px rgba(46,125,50,.15) }
+.status-chip.live{ border-color: #2e7d32; color: #1b5e20 }
+
+/* ===== Layout ===== */
+.layout{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px; margin: 0 auto;
+}
+@media (max-width: 980px){
+  .layout{ grid-template-columns: 1fr; }
+}
+
+/* ===== Card ===== */
+.card{
+  background: var(--md-sys-color-surface-container);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow: var(--md-elevation-1);
+}
+.card h2{
+  font-size: 16px; font-weight: 500; margin: 0 0 12px;
+  color: var(--md-sys-color-on-surface);
+  letter-spacing: .15px;
+}
+.card .help{
+  font-size: 12px; color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.5;
+}
+
+/* ===== Stage (camera + drawing) ===== */
+.stage{
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 4/3;
+  box-shadow: var(--md-elevation-2);
+}
+.stage video, .stage canvas{
+  position:absolute; inset:0; width:100%; height:100%;
+}
+.stage video{
+  transform: scaleX(-1); /* mirror selfie */
+  object-fit: cover;
+}
+#overlay{ pointer-events:none; }
+#drawing{ pointer-events:none; }
+
+/* Floating action toolbar over the stage */
+.toolbar{
+  position:absolute;
+  left: 50%; bottom: 16px; transform: translateX(-50%);
+  display: flex; gap: 8px;
+  padding: 8px;
+  background: rgba(255,255,255,.92);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--md-elevation-3);
+  backdrop-filter: blur(8px);
+  z-index: 3;
+}
+.tool-btn{
+  width:48px; height:48px; border-radius:50%;
+  border: none; cursor: pointer;
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  display:grid; place-items:center;
+  font-family: 'Material Symbols Outlined';
+  font-size: 22px;
+  position: relative;
+  transition: background .15s, transform .15s;
+}
+.tool-btn:hover{ background: var(--md-sys-color-secondary-container) }
+.tool-btn.primary{
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+.tool-btn.primary:hover{ filter: brightness(1.05) }
+.tool-btn .ring{
+  position:absolute; inset:-4px; border-radius:50%;
+  border: 3px solid var(--md-sys-color-primary);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path .05s linear;
+  pointer-events: none;
+}
+.tool-btn[data-dwell="active"] .ring{ animation: none; }
+.tool-tip{
+  position:absolute; bottom: calc(100% + 6px); left:50%; transform: translateX(-50%);
+  font-size: 11px; padding: 4px 8px; border-radius: 6px;
+  background: #222; color: #fff;
+  white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .15s;
+}
+.tool-btn:hover .tool-tip{ opacity: 1 }
+
+/* HUD top */
+.hud{
+  position:absolute; top: 12px; left: 12px; right: 12px;
+  display:flex; justify-content: space-between; align-items: center;
+  gap: 8px; z-index: 3; pointer-events:none;
+}
+.hud .badge{
+  background: rgba(0,0,0,.55); color:#fff;
+  padding: 6px 12px; border-radius: var(--radius-pill);
+  font-size: 12px; backdrop-filter: blur(6px);
+  display:inline-flex; align-items:center; gap: 6px;
+}
+.hud .badge .material-symbols-outlined{ font-size: 16px }
+
+/* Color swatches */
+.swatches{
+  display:flex; flex-wrap:wrap; gap: 8px;
+}
+.swatch{
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  box-shadow: var(--md-elevation-1);
+  transition: transform .15s, border-color .15s;
+}
+.swatch:hover{ transform: scale(1.08) }
+.swatch.active{ border-color: var(--md-sys-color-primary) }
+
+/* Slider */
+.slider-row{
+  display:flex; align-items:center; gap:12px; margin-top: 8px;
+}
+.slider-row label{
+  font-size: 13px; color: var(--md-sys-color-on-surface-variant);
+  min-width: 70px;
+}
+input[type=range]{
+  flex:1; accent-color: var(--md-sys-color-primary);
+}
+.value-pill{
+  font-family: 'Roboto Mono', monospace; font-size: 12px;
+  background: var(--md-sys-color-surface-container-high);
+  padding: 2px 8px; border-radius: var(--radius-pill);
+  min-width: 38px; text-align:center;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Buttons (filled tonal) */
+.btn{
+  display:inline-flex; align-items:center; gap: 8px;
+  height: 40px; padding: 0 18px;
+  border:none; cursor:pointer;
+  border-radius: var(--radius-pill);
+  font: 500 14px/1 'Roboto', sans-serif;
+  letter-spacing: .1px;
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-surface);
+  transition: filter .15s, box-shadow .15s;
+}
+.btn:hover{ filter: brightness(.98); box-shadow: var(--md-elevation-1) }
+.btn.filled{
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+.btn.outlined{
+  background: transparent;
+  border: 1px solid var(--md-sys-color-outline);
+}
+.btn .material-symbols-outlined{ font-size: 18px }
+.btn-row{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 4px }
+
+/* Legend / instructions */
+.legend{
+  display:grid; gap: 10px; margin-top: 4px;
+}
+.legend .row{
+  display:flex; align-items:flex-start; gap: 10px;
+  font-size: 13px; color: var(--md-sys-color-on-surface);
+  line-height: 1.45;
+}
+.legend .row .ico{
+  flex: 0 0 28px; height: 28px; border-radius: 50%;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  display:grid; place-items:center; font-family:'Material Symbols Outlined'; font-size:16px;
+}
+
+/* Snackbar */
+.snackbar{
+  position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 80px);
+  background: #322F35; color: #F5EFF7;
+  padding: 12px 18px; border-radius: 6px; font-size: 14px;
+  box-shadow: var(--md-elevation-3);
+  opacity: 0; transition: transform .25s, opacity .25s;
+  z-index: 100;
+  display:flex; align-items:center; gap: 12px;
+}
+.snackbar.show{ transform: translate(-50%, 0); opacity: 1 }
+.snackbar .material-symbols-outlined{ color: #D0BCFF }
+
+/* Onboarding overlay */
+.onboard{
+  position: fixed; inset:0; background: rgba(0,0,0,.55);
+  display: grid; place-items:center; z-index: 50;
+  backdrop-filter: blur(4px);
+}
+.onboard.hidden{ display:none }
+.onboard-card{
+  background: var(--md-sys-color-surface);
+  border-radius: var(--radius-xl);
+  padding: 28px 28px 20px;
+  max-width: 480px; width: calc(100% - 40px);
+  box-shadow: var(--md-elevation-3);
+}
+.onboard-card h2{
+  margin: 0 0 8px; font-size: 24px; font-weight: 500;
+}
+.onboard-card p{
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 14px; line-height: 1.5; margin: 0 0 12px;
+}
+
+footer{
+  text-align:center; padding: 20px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 12px;
+}
+footer code{ font-family: 'Roboto Mono', monospace }
+</style>
+</head>
+<body>
+
+<header class="app-bar">
+  <div class="brand">
+    <div class="brand-mark"><span class="material-symbols-outlined">draw</span></div>
+    <div>
+      <h1>Air Drawing</h1>
+      <div class="sub">Disegna in aria con la videocamera · MediaPipe Hands · Material Design 3</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <span class="status-chip" id="statusChip">
+    <span class="dot"></span>
+    <span id="statusText">In attesa della videocamera…</span>
+  </span>
+</header>
+
+<main class="layout">
+
+  <!-- Sidebar -->
+  <aside style="display:grid; gap: 16px; align-content: start;">
+    <section class="card">
+      <h2>Strumenti</h2>
+      <p class="help" style="margin: 0 0 12px;">Colore</p>
+      <div class="swatches" id="swatches">
+        <!-- Material colors -->
+        <div class="swatch active" data-color="#6750A4" style="background:#6750A4"></div>
+        <div class="swatch" data-color="#1976D2" style="background:#1976D2"></div>
+        <div class="swatch" data-color="#2E7D32" style="background:#2E7D32"></div>
+        <div class="swatch" data-color="#F9A825" style="background:#F9A825"></div>
+        <div class="swatch" data-color="#E53935" style="background:#E53935"></div>
+        <div class="swatch" data-color="#EC407A" style="background:#EC407A"></div>
+        <div class="swatch" data-color="#00897B" style="background:#00897B"></div>
+        <div class="swatch" data-color="#212121" style="background:#212121"></div>
+        <div class="swatch" data-color="#FFFFFF" style="background:#FFFFFF; border-color:#ccc"></div>
+      </div>
+
+      <div class="slider-row" style="margin-top: 14px">
+        <label for="size">Spessore</label>
+        <input type="range" id="size" min="2" max="40" value="6">
+        <span class="value-pill" id="sizeVal">6</span>
+      </div>
+      <div class="slider-row">
+        <label for="smoothing">Stabilità</label>
+        <input type="range" id="smoothing" min="0" max="90" value="55">
+        <span class="value-pill" id="smoothVal">55</span>
+      </div>
+
+      <div class="btn-row" style="margin-top: 14px">
+        <button class="btn outlined" id="undoBtn"><span class="material-symbols-outlined">undo</span>Annulla</button>
+        <button class="btn outlined" id="clearBtn"><span class="material-symbols-outlined">delete_sweep</span>Pulisci</button>
+      </div>
+      <div class="btn-row" style="margin-top: 8px">
+        <button class="btn filled" id="downloadBtn"><span class="material-symbols-outlined">download</span>Scarica PNG</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Come si usa</h2>
+      <div class="legend">
+        <div class="row"><div class="ico">point_scan</div><div><b>Posiziona la mano</b> davanti alla webcam: vedrai un cerchio sul polpastrello dell'indice (è il cursore).</div></div>
+        <div class="row"><div class="ico">touch_app</div><div><b>Pizzica</b> pollice e indice insieme per <b>iniziare a disegnare</b>. Allargali per smettere.</div></div>
+        <div class="row"><div class="ico">timer</div><div><b>Hover di 1,2 s</b> sui pulsanti rotondi in basso (palma aperta) per attivarli senza toccare il PC. Funziona anche per il pulsante <b>Scarica</b>.</div></div>
+      </div>
+    </section>
+  </aside>
+
+  <!-- Stage -->
+  <section>
+    <div class="stage" id="stage">
+      <video id="cam" autoplay muted playsinline></video>
+      <canvas id="overlay"></canvas>
+      <canvas id="drawing"></canvas>
+
+      <div class="hud">
+        <span class="badge"><span class="material-symbols-outlined">videocam</span> <span id="fps">— FPS</span></span>
+        <span class="badge" id="modeBadge"><span class="material-symbols-outlined">pan_tool</span> <span id="modeText">In attesa</span></span>
+      </div>
+
+      <!-- Floating air-toolbar (interagibile col dito via dwell) -->
+      <div class="toolbar" id="airToolbar">
+        <button class="tool-btn" id="airUndo" data-action="undo">
+          <span>undo</span><span class="ring"></span>
+          <span class="tool-tip">Annulla (hover)</span>
+        </button>
+        <button class="tool-btn" id="airClear" data-action="clear">
+          <span>delete_sweep</span><span class="ring"></span>
+          <span class="tool-tip">Pulisci (hover)</span>
+        </button>
+        <button class="tool-btn primary" id="airDownload" data-action="download">
+          <span>download</span><span class="ring"></span>
+          <span class="tool-tip">Scarica (hover)</span>
+        </button>
+      </div>
+    </div>
+
+    <p style="text-align:center; color: var(--md-sys-color-on-surface-variant); font-size: 12px; margin-top: 12px">
+      Per scaricare con il dito: tieni il <b>cursore</b> sopra il pulsante <span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle">download</span> per ~1,2 secondi.
+    </p>
+  </section>
+</main>
+
+<div class="snackbar" id="snackbar">
+  <span class="material-symbols-outlined">info</span>
+  <span id="snackText">Pronto.</span>
+</div>
+
+<div class="onboard" id="onboard">
+  <div class="onboard-card">
+    <h2>Permesso videocamera</h2>
+    <p>Per disegnare in aria, l'app ha bisogno della tua webcam. Il flusso video resta sul tuo computer (nessun upload).</p>
+    <p>Indicazioni: <b>indice puntato</b> = cursore · <b>pizzicotto pollice+indice</b> = disegna · <b>hover sui pulsanti rotondi 1,2 s</b> = clic a distanza.</p>
+    <div class="btn-row" style="justify-content: flex-end; margin-top: 16px">
+      <button class="btn filled" id="startBtn"><span class="material-symbols-outlined">videocam</span>Inizia</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Demo in locale · MediaPipe Hands &amp; Material Symbols by Google · <code>preview/air-drawing.html</code>
+</footer>
+
+<script>
+/* =====================================================================
+   AIR DRAWING — logica
+   - MediaPipe Hands per il tracking della mano
+   - Indice (landmark 8) = cursore
+   - Pizzicotto pollice (4) + indice (8) sotto soglia = "draw"
+   - Dwell-click di 1.2s sui tool-btn rotondi della toolbar (azioni a distanza)
+   - Tutto nel browser, niente upload.
+====================================================================== */
+
+const video    = document.getElementById('cam');
+const overlay  = document.getElementById('overlay');
+const drawing  = document.getElementById('drawing');
+const stage    = document.getElementById('stage');
+const fpsEl    = document.getElementById('fps');
+const modeText = document.getElementById('modeText');
+const statusChip = document.getElementById('statusChip');
+const statusText = document.getElementById('statusText');
+const onboard  = document.getElementById('onboard');
+const startBtn = document.getElementById('startBtn');
+const snackbar = document.getElementById('snackbar');
+const snackText= document.getElementById('snackText');
+
+const sizeEl = document.getElementById('size');
+const sizeVal = document.getElementById('sizeVal');
+const smoothEl = document.getElementById('smoothing');
+const smoothVal = document.getElementById('smoothVal');
+
+const octx = overlay.getContext('2d');
+const dctx = drawing.getContext('2d');
+
+let currentColor = '#6750A4';
+let brushSize = parseInt(sizeEl.value, 10);
+let smoothing = parseInt(smoothEl.value, 10) / 100;
+
+let lastX = null, lastY = null;
+let isDrawing = false;
+let strokes = [];          // array of {color,size,points:[{x,y}]}
+let activeStroke = null;
+let smoothedTip = null;    // smoothed cursor
+let frames = 0, lastFpsT = performance.now(), fps = 0;
+
+/* ---------- UI bindings ---------- */
+sizeEl.addEventListener('input', () => {
+  brushSize = parseInt(sizeEl.value, 10);
+  sizeVal.textContent = brushSize;
+});
+smoothEl.addEventListener('input', () => {
+  smoothing = parseInt(smoothEl.value, 10) / 100;
+  smoothVal.textContent = smoothEl.value;
+});
+
+document.querySelectorAll('.swatch').forEach(s => {
+  s.addEventListener('click', () => {
+    document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+    s.classList.add('active');
+    currentColor = s.dataset.color;
+  });
+});
+
+document.getElementById('undoBtn').addEventListener('click', undo);
+document.getElementById('clearBtn').addEventListener('click', clearAll);
+document.getElementById('downloadBtn').addEventListener('click', download);
+
+function snack(msg){
+  snackText.textContent = msg;
+  snackbar.classList.add('show');
+  clearTimeout(snack._t);
+  snack._t = setTimeout(()=>snackbar.classList.remove('show'), 2200);
+}
+
+/* ---------- Canvas sizing ---------- */
+function fitCanvases(){
+  const rect = stage.getBoundingClientRect();
+  for (const c of [overlay, drawing]){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width  = Math.round(rect.width  * dpr);
+    c.height = Math.round(rect.height * dpr);
+    c.style.width = rect.width + 'px';
+    c.style.height = rect.height + 'px';
+    c.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
+  }
+  redrawAll();
+}
+window.addEventListener('resize', fitCanvases);
+
+function redrawAll(){
+  const w = drawing.clientWidth, h = drawing.clientHeight;
+  dctx.clearRect(0,0,w,h);
+  for (const s of strokes) renderStroke(s);
+  if (activeStroke) renderStroke(activeStroke);
+}
+function renderStroke(s){
+  if (s.points.length < 2) return;
+  dctx.lineCap = 'round'; dctx.lineJoin = 'round';
+  dctx.strokeStyle = s.color;
+  dctx.lineWidth = s.size;
+  dctx.beginPath();
+  dctx.moveTo(s.points[0].x, s.points[0].y);
+  for (let i=1;i<s.points.length;i++){
+    const p = s.points[i];
+    dctx.lineTo(p.x, p.y);
+  }
+  dctx.stroke();
+}
+
+function undo(){
+  strokes.pop();
+  redrawAll();
+  snack('Tratto annullato');
+}
+function clearAll(){
+  strokes = []; activeStroke = null;
+  redrawAll();
+  snack('Tela pulita');
+}
+function download(){
+  // Compose a flat PNG of the drawing canvas only (no camera).
+  const w = drawing.clientWidth, h = drawing.clientHeight;
+  const out = document.createElement('canvas');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  out.width = w * dpr; out.height = h * dpr;
+  const ctx = out.getContext('2d');
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0,0,out.width,out.height);
+  ctx.drawImage(drawing, 0, 0, out.width, out.height);
+  const url = out.toDataURL('image/png');
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'air-drawing-' + new Date().toISOString().replace(/[:.]/g,'-') + '.png';
+  document.body.appendChild(a); a.click(); a.remove();
+  snack('Immagine scaricata');
+}
+
+/* ---------- Dwell-click su pulsanti rotondi ---------- */
+const dwellButtons = Array.from(document.querySelectorAll('#airToolbar .tool-btn'));
+const DWELL_MS = 1200;
+let dwellTarget = null, dwellStart = 0;
+
+function updateDwell(cursorX, cursorY){
+  // cursor coords are in stage CSS pixels
+  let hovered = null;
+  for (const btn of dwellButtons){
+    const r = btn.getBoundingClientRect();
+    const sr = stage.getBoundingClientRect();
+    const cx = r.left + r.width/2 - sr.left;
+    const cy = r.top  + r.height/2 - sr.top;
+    const radius = r.width/2 + 6;
+    const d = Math.hypot(cursorX - cx, cursorY - cy);
+    if (d <= radius){ hovered = btn; break; }
+  }
+  if (hovered !== dwellTarget){
+    if (dwellTarget){
+      dwellTarget.querySelector('.ring').style.clipPath = 'inset(0 100% 0 0)';
+    }
+    dwellTarget = hovered;
+    dwellStart = performance.now();
+  }
+  if (dwellTarget){
+    const elapsed = performance.now() - dwellStart;
+    const pct = Math.min(1, elapsed / DWELL_MS);
+    dwellTarget.querySelector('.ring').style.clipPath = `inset(0 ${100 - pct*100}% 0 0)`;
+    if (pct >= 1){
+      const action = dwellTarget.dataset.action;
+      if (action === 'undo') undo();
+      else if (action === 'clear') clearAll();
+      else if (action === 'download') download();
+      // reset
+      dwellTarget.querySelector('.ring').style.clipPath = 'inset(0 100% 0 0)';
+      dwellTarget = null;
+    }
+  }
+}
+function resetDwell(){
+  if (dwellTarget){
+    dwellTarget.querySelector('.ring').style.clipPath = 'inset(0 100% 0 0)';
+    dwellTarget = null;
+  }
+}
+
+/* ---------- MediaPipe Hands ---------- */
+let hands, camera;
+
+async function start(){
+  onboard.classList.add('hidden');
+  statusText.textContent = 'Avvio videocamera…';
+  try {
+    hands = new Hands({locateFile: (f) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${f}`});
+    hands.setOptions({
+      maxNumHands: 1,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.6,
+      minTrackingConfidence: 0.6,
+    });
+    hands.onResults(onResults);
+
+    camera = new Camera(video, {
+      onFrame: async () => { await hands.send({image: video}); },
+      width: 1280, height: 720,
+    });
+    await camera.start();
+
+    statusText.textContent = 'Videocamera attiva';
+    statusChip.classList.add('live');
+    fitCanvases();
+  } catch(err){
+    console.error(err);
+    statusText.textContent = 'Errore videocamera';
+    snack('Impossibile accedere alla videocamera');
+  }
+}
+startBtn.addEventListener('click', start);
+
+function onResults(results){
+  const w = overlay.clientWidth, h = overlay.clientHeight;
+  octx.clearRect(0,0,w,h);
+
+  // FPS
+  frames++;
+  const now = performance.now();
+  if (now - lastFpsT >= 500){
+    fps = Math.round(frames * 1000 / (now - lastFpsT));
+    fpsEl.textContent = fps + ' FPS';
+    frames = 0; lastFpsT = now;
+  }
+
+  if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0){
+    modeText.textContent = 'Nessuna mano';
+    if (activeStroke){ if (activeStroke.points.length > 1) strokes.push(activeStroke); activeStroke = null; }
+    isDrawing = false;
+    smoothedTip = null;
+    lastX = lastY = null;
+    resetDwell();
+    return;
+  }
+
+  const lms = results.multiHandLandmarks[0];
+  // landmark 8 = index tip ; landmark 4 = thumb tip ; 5 = index MCP (per scala)
+  const indexTip = lms[8];
+  const thumbTip = lms[4];
+  const indexMcp = lms[5];
+  const wrist = lms[0];
+
+  // pixel coords (mirror X to match the mirrored video)
+  const tx = (1 - indexTip.x) * w;
+  const ty = indexTip.y * h;
+  const thumbX = (1 - thumbTip.x) * w;
+  const thumbY = thumbTip.y * h;
+
+  // smoothing
+  if (!smoothedTip){ smoothedTip = {x:tx, y:ty}; }
+  else {
+    const a = 1 - smoothing;       // higher slider -> more smoothing -> lower a
+    smoothedTip.x = smoothedTip.x * smoothing + tx * a;
+    smoothedTip.y = smoothedTip.y * smoothing + ty * a;
+  }
+  const sx = smoothedTip.x, sy = smoothedTip.y;
+
+  // pinch detection: distance thumb-index, normalised by hand size
+  const handScale = Math.hypot((wrist.x - indexMcp.x), (wrist.y - indexMcp.y));
+  const pinchDist = Math.hypot((thumbTip.x - indexTip.x), (thumbTip.y - indexTip.y));
+  const pinchRatio = pinchDist / Math.max(handScale, 0.001);
+  const pinching = pinchRatio < 0.5;
+
+  // Drawing logic
+  if (pinching){
+    if (!isDrawing){
+      isDrawing = true;
+      activeStroke = { color: currentColor, size: brushSize, points: [{x:sx, y:sy}] };
+      lastX = sx; lastY = sy;
+    } else {
+      activeStroke.points.push({x:sx, y:sy});
+      lastX = sx; lastY = sy;
+      // incremental render for snappy feedback
+      dctx.lineCap = 'round'; dctx.lineJoin = 'round';
+      dctx.strokeStyle = activeStroke.color;
+      dctx.lineWidth = activeStroke.size;
+      dctx.beginPath();
+      const p = activeStroke.points;
+      dctx.moveTo(p[p.length-2].x, p[p.length-2].y);
+      dctx.lineTo(p[p.length-1].x, p[p.length-1].y);
+      dctx.stroke();
+    }
+    modeText.textContent = 'Disegno';
+    // pinch disables dwell to avoid accidental clicks while drawing
+    resetDwell();
+  } else {
+    if (isDrawing){
+      isDrawing = false;
+      if (activeStroke && activeStroke.points.length > 1) strokes.push(activeStroke);
+      activeStroke = null;
+    }
+    modeText.textContent = 'Cursore';
+    updateDwell(sx, sy);
+  }
+
+  // Draw cursor + landmarks overlay
+  drawHandOverlay(lms, w, h);
+  drawCursor(sx, sy, pinching);
+}
+
+function drawHandOverlay(lms, w, h){
+  // simple skeleton
+  const conns = [
+    [0,1],[1,2],[2,3],[3,4],
+    [0,5],[5,6],[6,7],[7,8],
+    [5,9],[9,10],[10,11],[11,12],
+    [9,13],[13,14],[14,15],[15,16],
+    [13,17],[17,18],[18,19],[19,20],
+    [0,17]
+  ];
+  octx.lineWidth = 2;
+  octx.strokeStyle = 'rgba(255,255,255,.55)';
+  octx.beginPath();
+  for (const [a,b] of conns){
+    const pa = lms[a], pb = lms[b];
+    octx.moveTo((1-pa.x)*w, pa.y*h);
+    octx.lineTo((1-pb.x)*w, pb.y*h);
+  }
+  octx.stroke();
+  octx.fillStyle = 'rgba(103,80,164,.9)';
+  for (const lm of lms){
+    octx.beginPath();
+    octx.arc((1-lm.x)*w, lm.y*h, 3, 0, Math.PI*2);
+    octx.fill();
+  }
+}
+
+function drawCursor(x, y, drawing){
+  const r = drawing ? Math.max(8, brushSize/2 + 4) : 12;
+  octx.save();
+  octx.lineWidth = 3;
+  octx.strokeStyle = drawing ? currentColor : '#FFFFFF';
+  octx.shadowColor = 'rgba(0,0,0,.6)';
+  octx.shadowBlur = 6;
+  octx.beginPath();
+  octx.arc(x, y, r, 0, Math.PI*2);
+  octx.stroke();
+  octx.shadowBlur = 0;
+  if (drawing){
+    octx.fillStyle = currentColor;
+    octx.beginPath(); octx.arc(x,y, Math.max(2, brushSize/4), 0, Math.PI*2); octx.fill();
+  } else {
+    octx.fillStyle = 'rgba(255,255,255,.9)';
+    octx.beginPath(); octx.arc(x,y, 2, 0, Math.PI*2); octx.fill();
+  }
+  octx.restore();
+}
+
+// Initial canvas sizing (before camera start)
+window.addEventListener('load', fitCanvases);
+</script>
+</body>
+</html>
