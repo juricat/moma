@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bmb/media",
+	"title": "BMB Media",
+	"category": "bmb",
+	"icon": "format-image",
+	"description": "Immagine o video (YouTube, Vimeo o file caricato). Supporta link esterno o ancora interna, dimensione, ratio e animazioni.",
+	"keywords": ["image", "video", "youtube", "vimeo", "media", "bmb"],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": ["wide", "full"],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"mediaType":   { "type": "string", "default": "image" },
+		"imageId":     { "type": "number", "default": 0 },
+		"imageUrl":    { "type": "string", "default": "" },
+		"imageAlt":    { "type": "string", "default": "" },
+		"videoSource": { "type": "string", "default": "youtube" },
+		"videoUrl":    { "type": "string", "default": "" },
+		"videoFileId": { "type": "number", "default": 0 },
+		"videoFileUrl":{ "type": "string", "default": "" },
+		"videoControls":{"type": "boolean","default": true },
+		"videoAutoplay":{"type": "boolean","default": false },
+		"videoLoop":   { "type": "boolean","default": false },
+		"videoMuted":  { "type": "boolean","default": false },
+		"poster":      { "type": "string", "default": "" },
+		"ratio":       { "type": "string", "default": "16-9" },
+		"size":        { "type": "string", "default": "full" },
+		"rounded":     { "type": "string", "default": "m" },
+		"linkType":    { "type": "string", "default": "none" },
+		"linkUrl":     { "type": "string", "default": "" },
+		"linkTarget":  { "type": "boolean","default": false },
+		"caption":     { "type": "string", "default": "" },
+		"anchorId":    { "type": "string", "default": "" },
+		"animationIn": { "type": "string", "default": "fade-up" },
+		"animationOut":{ "type": "string", "default": "none" }
+	},
+	"editorScript": "file:./index.js",
+	"style":        "file:./style.css"
+}

@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bmb/heading",
+	"title": "BMB Titolo",
+	"category": "bmb",
+	"icon": "heading",
+	"description": "Titolo H1-H6 con scala dimensionale (S/M/L/XL/XXL/XXXL), link a pagina esterna o ancora interna, ID di ancoraggio e animazioni.",
+	"keywords": ["heading", "titolo", "h1", "bmb"],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"color": { "text": true, "background": true, "gradients": true },
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"text":         { "type": "string", "default": "Titolo" },
+		"level":        { "type": "number", "default": 2 },
+		"size":         { "type": "string", "default": "xl" },
+		"weight":       { "type": "string", "default": "700" },
+		"align":        { "type": "string", "default": "left" },
+		"uppercase":    { "type": "boolean", "default": false },
+		"linkUrl":      { "type": "string", "default": "" },
+		"linkType":     { "type": "string", "default": "none" },
+		"linkTarget":   { "type": "boolean", "default": false },
+		"anchorId":     { "type": "string", "default": "" },
+		"animationIn":  { "type": "string", "default": "fade-up" },
+		"animationOut": { "type": "string", "default": "none" }
+	},
+	"editorScript": "file:./index.js",
+	"style":        "file:./style.css"
+}

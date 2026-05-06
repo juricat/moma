@@ -1,0 +1,28 @@
+.bmb-heading{
+	display:block;
+	margin:0 0 0.6em;
+	line-height:1.15;
+	letter-spacing:-0.01em;
+	scroll-margin-top:90px;
+}
+.bmb-heading--s    { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem); line-height:1.4; }
+.bmb-heading--m    { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); line-height:1.35; }
+.bmb-heading--l    { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem); line-height:1.3; }
+.bmb-heading--xl   { font-size: clamp(1.875rem, 1.6rem + 1.2vw, 2.5rem); line-height:1.2; }
+.bmb-heading--xxl  { font-size: clamp(2.25rem, 1.8rem + 2vw, 3.5rem); line-height:1.1; }
+.bmb-heading--xxxl { font-size: clamp(3rem, 2.2rem + 3.5vw, 5rem); line-height:1.05; }
+
+.bmb-heading--align-left   { text-align:left; }
+.bmb-heading--align-center { text-align:center; }
+.bmb-heading--align-right  { text-align:right; }
+.bmb-heading--uppercase    { text-transform:uppercase; letter-spacing:0.04em; }
+
+.bmb-heading__link{
+	color:inherit;
+	text-decoration:none;
+	border-bottom:2px solid transparent;
+	transition:border-color .2s ease, color .2s ease;
+}
+.bmb-heading__link:hover{
+	border-bottom-color:var(--bmb-accent, currentColor);
+}

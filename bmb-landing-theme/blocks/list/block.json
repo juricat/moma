@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bmb/list",
+	"title": "BMB Punto Elenco",
+	"category": "bmb",
+	"icon": "editor-ul",
+	"description": "Lista puntata o numerata con stile, dimensione e ancora.",
+	"keywords": ["list", "elenco", "bmb"],
+	"supports": { "html": false, "anchor": true, "color": { "text": true } },
+	"attributes": {
+		"items":        { "type": "string", "default": "<li>Voce 1</li><li>Voce 2</li>" },
+		"ordered":      { "type": "boolean", "default": false },
+		"size":         { "type": "string", "default": "m" },
+		"marker":       { "type": "string", "default": "dot" },
+		"anchorId":     { "type": "string", "default": "" },
+		"animationIn":  { "type": "string", "default": "fade-up" },
+		"animationOut": { "type": "string", "default": "none" }
+	},
+	"editorScript": "file:./index.js",
+	"style":        "file:./style.css"
+}

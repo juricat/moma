@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bmb/cta",
+	"title": "BMB CTA",
+	"category": "bmb",
+	"icon": "button",
+	"description": "Pulsante CTA con link a pagina esterna o ancora interna, varianti, dimensioni, ID di ancoraggio e animazioni.",
+	"keywords": ["cta", "button", "bmb"],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"color": { "background": true, "text": true, "gradients": true },
+		"spacing": { "margin": true, "padding": true }
+	},
+	"attributes": {
+		"label":        { "type": "string", "default": "Scopri di più" },
+		"linkType":     { "type": "string", "default": "external" },
+		"linkUrl":      { "type": "string", "default": "" },
+		"linkTarget":   { "type": "boolean","default": false },
+		"variant":      { "type": "string", "default": "accent" },
+		"size":         { "type": "string", "default": "m" },
+		"fullWidth":    { "type": "boolean","default": false },
+		"icon":         { "type": "string", "default": "none" },
+		"align":        { "type": "string", "default": "left" },
+		"anchorId":     { "type": "string", "default": "" },
+		"animationIn":  { "type": "string", "default": "fade-up" },
+		"animationOut": { "type": "string", "default": "none" }
+	},
+	"editorScript": "file:./index.js",
+	"style":        "file:./style.css"
+}

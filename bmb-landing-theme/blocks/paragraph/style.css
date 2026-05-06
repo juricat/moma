@@ -1,0 +1,41 @@
+.bmb-paragraph{
+	margin: 0 0 1em;
+	line-height: 1.6;
+	color: inherit;
+	scroll-margin-top: 90px;
+}
+.bmb-paragraph--s   { font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem); }
+.bmb-paragraph--m   { font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem); }
+.bmb-paragraph--l   { font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); }
+.bmb-paragraph--xl  { font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); line-height:1.5; }
+
+.bmb-paragraph--align-left   { text-align:left; }
+.bmb-paragraph--align-center { text-align:center; margin-inline:auto; }
+.bmb-paragraph--align-right  { text-align:right; margin-inline-start:auto; }
+
+.bmb-paragraph--uppercase    { text-transform:uppercase; letter-spacing:0.05em; }
+
+/* maxWidth: il paragrafo abbraccia la lunghezza del testo */
+.bmb-paragraph--mw-content   { display:inline-block; max-width:100%; }
+.bmb-paragraph--mw-narrow    { max-width:60ch; }
+.bmb-paragraph--mw-medium    { max-width:75ch; }
+.bmb-paragraph--mw-full      { max-width:100%; }
+
+/* Quando align center con mw-content, mantiene il blocco ma centrato */
+.bmb-paragraph--align-center.bmb-paragraph--mw-content,
+.bmb-paragraph--align-center.bmb-paragraph--mw-narrow,
+.bmb-paragraph--align-center.bmb-paragraph--mw-medium{
+	display:block;
+	margin-inline:auto;
+	width:fit-content;
+}
+
+.bmb-paragraph strong{ font-weight:700; }
+.bmb-paragraph em    { font-style:italic; }
+.bmb-paragraph a{
+	color:var(--bmb-accent, #E63946);
+	text-decoration:underline;
+	text-underline-offset:.2em;
+	transition:opacity .2s;
+}
+.bmb-paragraph a:hover{ opacity:.75; }

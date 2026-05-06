@@ -1,0 +1,6 @@
+/* Editor-only tweaks: rendering preview di Gutenberg con il look del front-end */
+.editor-styles-wrapper{
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.editor-styles-wrapper .bmb-section{ scroll-margin-top: 0; }
+.editor-styles-wrapper [data-bmb-anim-in]{ opacity: 1 !important; transform: none !important; }

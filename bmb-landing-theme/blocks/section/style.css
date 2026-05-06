@@ -1,0 +1,19 @@
+.bmb-section{
+	position:relative;
+	width:100%;
+	scroll-margin-top:80px;
+}
+.bmb-section--vp-s   { padding-block: clamp(1.5rem, 3vw, 2.5rem); }
+.bmb-section--vp-m   { padding-block: clamp(2.5rem, 5vw, 4rem); }
+.bmb-section--vp-l   { padding-block: clamp(4rem, 7vw, 6rem); }
+.bmb-section--vp-xl  { padding-block: clamp(6rem, 10vw, 9rem); }
+.bmb-section--vp-xxl { padding-block: clamp(8rem, 14vw, 13rem); }
+
+.bmb-section__inner{
+	margin-inline:auto;
+	width:100%;
+	padding-inline:clamp(1rem, 4vw, 3rem);
+}
+.bmb-section__inner--standard{ max-width:1200px; }
+.bmb-section__inner--wide{     max-width:1440px; }
+.bmb-section__inner--full{     max-width:100%; padding-inline:0; }

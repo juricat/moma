@@ -1,0 +1,59 @@
+.bmb-cta-wrap{
+	margin: 1em 0;
+	display:flex;
+}
+.bmb-cta-wrap--align-left   { justify-content:flex-start; }
+.bmb-cta-wrap--align-center { justify-content:center; }
+.bmb-cta-wrap--align-right  { justify-content:flex-end; }
+
+.bmb-btn{
+	--btn-bg: var(--bmb-accent, #E63946);
+	--btn-color: #fff;
+	--btn-border: transparent;
+
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	gap:.55em;
+	padding: .9em 1.6em;
+	font-family:inherit;
+	font-weight:600;
+	line-height:1.2;
+	text-decoration:none;
+	border-radius:9999px;
+	border:2px solid var(--btn-border);
+	background:var(--btn-bg);
+	color:var(--btn-color);
+	cursor:pointer;
+	transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+	will-change:transform;
+}
+.bmb-btn:hover{
+	transform: translateY(-2px);
+	box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+.bmb-btn:active{ transform: translateY(0); }
+
+.bmb-btn--s  { font-size:.875rem; padding:.65em 1.2em; }
+.bmb-btn--m  { font-size:1rem;     padding:.85em 1.5em; }
+.bmb-btn--l  { font-size:1.125rem; padding:1em 1.8em; }
+.bmb-btn--xl { font-size:1.25rem;  padding:1.1em 2.1em; }
+.bmb-btn--full{ width:100%; }
+
+.bmb-btn--accent          { --btn-bg: var(--bmb-accent,#E63946); --btn-color:#fff; }
+.bmb-btn--primary         { --btn-bg: var(--bmb-primary,#0B1F3A); --btn-color:#fff; }
+.bmb-btn--white           { --btn-bg:#fff; --btn-color: var(--bmb-primary,#0B1F3A); }
+.bmb-btn--outline-accent  { --btn-bg:transparent; --btn-color: var(--bmb-accent,#E63946);  --btn-border: var(--bmb-accent,#E63946); }
+.bmb-btn--outline-primary { --btn-bg:transparent; --btn-color: var(--bmb-primary,#0B1F3A); --btn-border: var(--bmb-primary,#0B1F3A); }
+.bmb-btn--outline-accent:hover  { --btn-bg: var(--bmb-accent,#E63946);  --btn-color:#fff; }
+.bmb-btn--outline-primary:hover { --btn-bg: var(--bmb-primary,#0B1F3A); --btn-color:#fff; }
+.bmb-btn--ghost           { --btn-bg:transparent; --btn-color: currentColor; --btn-border: transparent; padding-inline:.4em; }
+.bmb-btn--ghost:hover     { box-shadow:none; transform:none; opacity:.75; }
+
+.bmb-btn__icon{
+	display:inline-flex;
+	transition: transform .25s ease;
+	font-size:1.05em;
+	line-height:1;
+}
+.bmb-btn:hover .bmb-btn__icon{ transform: translateX(3px); }

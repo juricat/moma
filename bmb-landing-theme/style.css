@@ -1,0 +1,15 @@
+/*
+Theme Name: BMB Landing
+Theme URI: https://example.com/bmb-landing
+Author: BMB
+Author URI: https://example.com
+Description: Tema landing page basato su design Figma BMB. Costruito con blocchi Gutenberg in React, completamente gestibile dall'admin (titoli con pesi S/M/L/XL/XXL, paragrafi con grassetto/maiuscolo/elenchi, immagini e video YouTube/Vimeo/upload, CTA, ancore interne, animazioni di entrata/uscita). Responsive e pixel-perfect.
+Version: 1.0.0
+Requires at least: 6.3
+Tested up to: 6.6
+Requires PHP: 7.4
+License: GPL v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: bmb-landing
+Tags: landing-page, custom-blocks, gutenberg, full-site-editing, responsive, one-page
+*/

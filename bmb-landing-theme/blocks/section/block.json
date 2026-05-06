@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bmb/section",
+	"title": "BMB Sezione",
+	"category": "bmb",
+	"icon": "align-full-width",
+	"description": "Contenitore di sezione con ID di ancoraggio, sfondo, padding e animazioni.",
+	"keywords": ["section", "container", "anchor", "bmb"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"anchor": true,
+		"color": { "background": true, "text": true, "gradients": true },
+		"spacing": { "padding": true, "margin": true }
+	},
+	"attributes": {
+		"anchorId":      { "type": "string", "default": "" },
+		"contentWidth":  { "type": "string", "default": "wide" },
+		"verticalPad":   { "type": "string", "default": "l" },
+		"animationIn":   { "type": "string", "default": "fade-up" },
+		"animationOut":  { "type": "string", "default": "none" },
+		"animationDelay":{ "type": "number", "default": 0 },
+		"backgroundImage":   { "type": "string", "default": "" },
+		"backgroundOverlay": { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./editor.css",
+	"style":        "file:./style.css"
+}

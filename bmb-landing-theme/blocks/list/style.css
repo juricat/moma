@@ -1,0 +1,33 @@
+.bmb-list{
+	margin: 0 0 1.25em;
+	padding-inline-start: 1.4em;
+	line-height: 1.6;
+}
+.bmb-list li{ margin: .35em 0; }
+.bmb-list--s  { font-size: clamp(0.875rem,0.8rem+0.3vw,1rem); }
+.bmb-list--m  { font-size: clamp(1rem,0.95rem+0.3vw,1.0625rem); }
+.bmb-list--l  { font-size: clamp(1.0625rem,1rem+0.4vw,1.25rem); }
+.bmb-list--xl { font-size: clamp(1.25rem,1.1rem+0.5vw,1.5rem); }
+
+.bmb-list--marker-dot    { list-style: disc; }
+.bmb-list--marker-square { list-style: square; }
+.bmb-list--marker-none   { list-style: none; padding-inline-start: 0; }
+
+.bmb-list--marker-dash{ list-style:none; padding-inline-start:0; }
+.bmb-list--marker-dash > li{ position:relative; padding-inline-start:1.4em; }
+.bmb-list--marker-dash > li::before{
+	content:""; position:absolute; left:0; top:.7em;
+	width:.8em; height:2px; background:var(--bmb-accent,#E63946);
+}
+.bmb-list--marker-check{ list-style:none; padding-inline-start:0; }
+.bmb-list--marker-check > li{ position:relative; padding-inline-start:1.6em; }
+.bmb-list--marker-check > li::before{
+	content:"✓"; position:absolute; left:0; top:0;
+	color:var(--bmb-accent,#E63946); font-weight:700;
+}
+.bmb-list--marker-arrow{ list-style:none; padding-inline-start:0; }
+.bmb-list--marker-arrow > li{ position:relative; padding-inline-start:1.6em; }
+.bmb-list--marker-arrow > li::before{
+	content:"→"; position:absolute; left:0; top:0;
+	color:var(--bmb-accent,#E63946); font-weight:700;
+}
