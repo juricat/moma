@@ -69,6 +69,13 @@ function bmb_enqueue_assets() {
 		array(),
 		null
 	);
+	// Material Symbols Sharp - design system BMB (weight 200, optical 40, no fill)
+	wp_enqueue_style(
+		'bmb-icons',
+		'https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@40,200,0,0&display=swap',
+		array(),
+		null
+	);
 
 	wp_enqueue_script(
 		'bmb-animations',

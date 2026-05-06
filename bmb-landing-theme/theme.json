@@ -11,11 +11,12 @@
     "color": {
       "palette": [
         { "slug": "primary",        "color": "#0E294B", "name": "Primary (Blu BMB)" },
-        { "slug": "primary-dark",   "color": "#081A30", "name": "Primary Dark" },
+        { "slug": "primary-dark",   "color": "#020618", "name": "Primary Dark (testo)" },
         { "slug": "blue-2",         "color": "#135195", "name": "Blue 2" },
         { "slug": "blue-3",         "color": "#0F5DBE", "name": "Blue 3" },
         { "slug": "accent",         "color": "#0A75EB", "name": "Accent (CTA)" },
         { "slug": "light-blue",     "color": "#1FA0D8", "name": "Light Blue" },
+        { "slug": "light-blue-2",   "color": "#6BC6EF", "name": "Light Blue 2" },
         { "slug": "blue-9",         "color": "#B9E9FF", "name": "Blue 9" },
         { "slug": "blue-11",        "color": "#EDFAFF", "name": "Blue 11" },
         { "slug": "blue-12",        "color": "#F8FCFF", "name": "Blue 12" },
@@ -25,7 +26,7 @@
         { "slug": "grey-10",        "color": "#F1F5F9", "name": "Grey 10" },
         { "slug": "grey-11",        "color": "#F3F3F3", "name": "Grey 11" },
         { "slug": "white",          "color": "#FFFFFF", "name": "White" },
-        { "slug": "black",          "color": "#0E0E12", "name": "Black" }
+        { "slug": "black",          "color": "#020618", "name": "Black" }
       ],
       "gradients": [
         { "slug": "primary-fade", "name": "Primary Fade", "gradient": "linear-gradient(135deg, #0E294B 0%, #135195 100%)" },

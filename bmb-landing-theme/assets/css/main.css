@@ -4,13 +4,14 @@
    ========================================================= */
 
 :root{
-	/* Brand colors (Figma BMB) */
-	--bmb-primary:        #0E294B;
-	--bmb-primary-dark:   #081A30;
+	/* Brand colors (Figma BMB - design system) */
+	--bmb-primary:        #0E294B;  /* color_blue_ - primary navy */
+	--bmb-primary-dark:   #020618;  /* deep dark - testo principale */
 	--bmb-blue-2:         #135195;
 	--bmb-blue-3:         #0F5DBE;
-	--bmb-accent:         #0A75EB;
+	--bmb-accent:         #0A75EB;  /* color_blue_4 - accent brillante (chip / link) */
 	--bmb-light-blue:     #1FA0D8;
+	--bmb-light-blue-2:   #6BC6EF;  /* light blue chiaro */
 	--bmb-blue-9:         #B9E9FF;
 	--bmb-blue-11:        #EDFAFF;
 	--bmb-blue-12:        #F8FCFF;
@@ -20,7 +21,10 @@
 	--bmb-grey-10:        #F1F5F9;
 	--bmb-grey-11:        #F3F3F3;
 	--bmb-white:          #FFFFFF;
-	--bmb-black:          #0E0E12;
+	--bmb-black:          #020618;
+
+	/* CTA primaria nei pattern: navy (default) — usata come bg pannelli accent */
+	--bmb-panel-bg:       var(--bmb-primary);
 
 	/* Layout */
 	--bmb-header-h: 80px;
@@ -46,10 +50,68 @@ body{
 	font-size: clamp(1rem, .95rem + .25vw, 1.125rem);
 	font-weight: 300;
 	line-height: 1.55;
-	color: var(--bmb-primary);
+	color: var(--bmb-primary-dark);
 	background: var(--bmb-white);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Symbols Sharp - design system BMB */
+.bmb-icon,
+.material-symbols-sharp{
+	font-family:'Material Symbols Sharp';
+	font-weight:normal; font-style:normal;
+	font-size: 1.25em;
+	display:inline-block;
+	line-height:1;
+	letter-spacing:normal;
+	text-transform:none;
+	white-space:nowrap;
+	word-wrap:normal;
+	direction:ltr;
+	-webkit-font-feature-settings:'liga';
+	-webkit-font-smoothing:antialiased;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 40;
+	vertical-align:middle;
+}
+
+/* Tag chips (Figma design system) */
+.bmb-tag{
+	display:inline-block;
+	padding: .35em .75em;
+	font-size: .75rem;
+	font-weight: 600;
+	letter-spacing: .03em;
+	text-transform: uppercase;
+	background: var(--bmb-blue-13);
+	color: var(--bmb-accent);
+	border-radius: var(--bmb-radius-s);
+	margin: 0 0 .5em;
+}
+.bmb-tag--accent{
+	background: var(--bmb-accent);
+	color: #fff;
+}
+.bmb-tag--light{
+	background: var(--bmb-light-blue-2);
+	color: var(--bmb-primary);
+}
+
+/* Circle arrow button (card prodotto) */
+.bmb-circle-arrow{
+	display:inline-flex;
+	align-items:center; justify-content:center;
+	width: 44px; height: 44px;
+	border-radius: 50%;
+	background: var(--bmb-accent);
+	color:#fff;
+	text-decoration:none;
+	font-size: 1.25em;
+	transition: transform var(--bmb-transition), background var(--bmb-transition);
+}
+.bmb-circle-arrow:hover{
+	transform: rotate(-45deg) scale(1.05);
+	background: var(--bmb-primary);
 }
 
 img,svg,video,iframe{ max-width:100%; }

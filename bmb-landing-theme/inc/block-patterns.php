@@ -42,7 +42,7 @@ function bmb_register_patterns() {
 <div class="wp-block-buttons">
 <!-- wp:bmb/cta {"label":"▶ GUARDA IL VIDEO","linkType":"external","linkUrl":"#video","variant":"white","size":"m","align":"center","icon":"none"} /-->
 
-<!-- wp:bmb/cta {"label":"SCOPRI L\'AZIENDA","linkType":"anchor","linkUrl":"azienda","variant":"accent","size":"m","align":"center","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"SCOPRI L\'AZIENDA","linkType":"anchor","linkUrl":"azienda","variant":"primary","size":"m","align":"center","icon":"none"} /-->
 </div>
 <!-- /wp:buttons -->
 </div></div>
@@ -128,8 +128,8 @@ function bmb_register_patterns() {
 </div>
 <!-- /wp:column -->
 
-<!-- wp:column {"width":"45%","style":{"color":{"background":"#0A75EB","text":"#ffffff"},"spacing":{"padding":{"top":"clamp(2rem,4vw,4rem)","right":"clamp(2rem,4vw,4rem)","bottom":"clamp(2rem,4vw,4rem)","left":"clamp(2rem,4vw,4rem)"}}},"className":"bmb-split__panel"} -->
-<div class="wp-block-column bmb-split__panel has-text-color has-background" style="color:#fff;background-color:#0A75EB;padding:clamp(2rem,4vw,4rem);flex-basis:45%">
+<!-- wp:column {"width":"45%","style":{"color":{"background":"#0E294B","text":"#ffffff"},"spacing":{"padding":{"top":"clamp(2rem,4vw,4rem)","right":"clamp(2rem,4vw,4rem)","bottom":"clamp(2rem,4vw,4rem)","left":"clamp(2rem,4vw,4rem)"}}},"className":"bmb-split__panel"} -->
+<div class="wp-block-column bmb-split__panel has-text-color has-background" style="color:#fff;background-color:#0E294B;padding:clamp(2rem,4vw,4rem);flex-basis:45%">
 <!-- wp:bmb/heading {"text":"Consulenza","level":2,"size":"xxl","weight":"600","animationIn":"fade-up"} /-->
 
 <!-- wp:bmb/paragraph {"text":"Il nostro ufficio tecnico è composto da un team di ingegneri e specialisti altamente qualificati nei settori della meccanica, del software e della progettazione elettrica.","size":"l"} /-->
@@ -175,7 +175,7 @@ function bmb_register_patterns() {
 </div>
 <!-- /wp:columns -->
 
-<!-- wp:bmb/cta {"label":"leggi altre storie di successo","linkType":"anchor","linkUrl":"stories","variant":"accent","size":"m","fullWidth":true,"icon":"arrow"} /-->
+<!-- wp:bmb/cta {"label":"leggi altre storie di successo","linkType":"anchor","linkUrl":"stories","variant":"primary","size":"m","fullWidth":true,"icon":"arrow"} /-->
 
 </div></section>
 <!-- /wp:bmb/section -->',
@@ -199,7 +199,7 @@ function bmb_register_patterns() {
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons">
 <!-- wp:bmb/cta {"label":"▶ GUARDA IL VIDEO","linkType":"external","linkUrl":"#video","variant":"white","size":"m","align":"center","icon":"none"} /-->
-<!-- wp:bmb/cta {"label":"SCOPRI L\'AZIENDA","linkType":"anchor","linkUrl":"azienda","variant":"accent","size":"m","align":"center","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"SCOPRI L\'AZIENDA","linkType":"anchor","linkUrl":"azienda","variant":"primary","size":"m","align":"center","icon":"none"} /-->
 </div>
 <!-- /wp:buttons -->
 </div></div>
@@ -215,8 +215,8 @@ function bmb_register_patterns() {
 		'categories'    => array( 'bmb' ),
 		'keywords'      => array( 'banner', 'cta', 'mondo' ),
 		'viewportWidth' => 1440,
-		'content'       => '<!-- wp:bmb/section {"anchorId":"contatti","verticalPad":"l","contentWidth":"wide","style":{"color":{"background":"#0A75EB","text":"#ffffff"}}} -->
-<section class="wp-block-bmb-section bmb-section bmb-section--vp-l has-text-color has-background" id="contatti" style="color:#fff;background-color:#0A75EB" data-bmb-anim-in="fade-up" data-bmb-anim-out="none" data-bmb-anim-delay="0"><div class="bmb-section__inner bmb-section__inner--wide">
+		'content'       => '<!-- wp:bmb/section {"anchorId":"contatti","verticalPad":"l","contentWidth":"wide","style":{"color":{"background":"#0E294B","text":"#ffffff"}}} -->
+<section class="wp-block-bmb-section bmb-section bmb-section--vp-l has-text-color has-background" id="contatti" style="color:#fff;background-color:#0E294B" data-bmb-anim-in="fade-up" data-bmb-anim-out="none" data-bmb-anim-delay="0"><div class="bmb-section__inner bmb-section__inner--wide">
 
 <!-- wp:columns {"verticalAlignment":"center"} -->
 <div class="wp-block-columns are-vertically-aligned-center">
@@ -343,6 +343,182 @@ function bmb_register_patterns() {
 <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->
+
+</div></section>
+<!-- /wp:bmb/section -->',
+	) );
+
+	/* ============================================================
+	 *  CARD PRODOTTO (verticale - design system Figma)
+	 * ============================================================ */
+	register_block_pattern( 'bmb/card-prodotto', array(
+		'title'         => __( 'BMB - Card Prodotto', 'bmb-landing' ),
+		'description'   => __( 'Card prodotto verticale: immagine + tag + nome macchina + tasto freccia ↗ in cerchio.', 'bmb-landing' ),
+		'categories'    => array( 'bmb' ),
+		'keywords'      => array( 'card', 'prodotto', 'macchina' ),
+		'viewportWidth' => 320,
+		'content'       => '<!-- wp:group {"className":"bmb-card-prodotto","style":{"color":{"background":"#ffffff"},"spacing":{"padding":{"top":"16px","right":"16px","bottom":"16px","left":"16px"}},"border":{"radius":"10px","width":"1px","color":"#E2E8F0"}}} -->
+<div class="wp-block-group bmb-card-prodotto has-background" style="border-color:#E2E8F0;border-width:1px;border-radius:10px;background-color:#fff;padding:16px">
+<!-- wp:bmb/media {"mediaType":"image","imageUrl":"","imageAlt":"Macchina","ratio":"4-3","size":"full","rounded":"m"} /-->
+<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:group -->
+<div class="wp-block-group">
+<!-- wp:bmb/paragraph {"text":"<span class=\"bmb-tag\">Tipologia</span>","size":"s","maxWidth":"content"} /-->
+<!-- wp:bmb/heading {"text":"Nome Macchina","level":3,"size":"m","weight":"500"} /-->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:bmb/cta {"label":"↗","linkType":"anchor","linkUrl":"dettaglio","variant":"accent","size":"s","icon":"none","className":"bmb-circle-cta"} /-->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->',
+	) );
+
+	/* ============================================================
+	 *  CARD ARTICOLO (orizzontale large)
+	 * ============================================================ */
+	register_block_pattern( 'bmb/card-articolo', array(
+		'title'         => __( 'BMB - Card Ultimo Articolo', 'bmb-landing' ),
+		'description'   => __( 'Card orizzontale 50/50: immagine + tag pill + H2 + paragrafo + CTA SCOPRI IL CASE.', 'bmb-landing' ),
+		'categories'    => array( 'bmb' ),
+		'keywords'      => array( 'articolo', 'case', 'card' ),
+		'viewportWidth' => 1440,
+		'content'       => '<!-- wp:columns {"verticalAlignment":"center","style":{"color":{"background":"#FFFFFF"},"spacing":{"padding":{"top":"24px","right":"24px","bottom":"24px","left":"24px"}},"border":{"radius":"10px","width":"1px","color":"#E2E8F0"}},"className":"bmb-card-articolo"} -->
+<div class="wp-block-columns are-vertically-aligned-center bmb-card-articolo has-background" style="border-color:#E2E8F0;border-width:1px;border-radius:10px;background-color:#fff;padding:24px">
+<!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:bmb/media {"mediaType":"image","imageUrl":"","imageAlt":"Case","ratio":"4-3","size":"full","rounded":"m"} /-->
+</div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:bmb/paragraph {"text":"<span class=\"bmb-tag\">tag industry</span>","size":"s","maxWidth":"content"} /-->
+<!-- wp:bmb/heading {"text":"Titolo case study Case study lorem ipsum dolores amet","level":2,"size":"xl","weight":"700"} /-->
+<!-- wp:bmb/paragraph {"text":"Lorem ipsum dolor sit amet consectetur. Massa tellus mus nisl lacus orci. In donec scelerisque consequat tempor odio bibendum.","size":"m"} /-->
+<!-- wp:bmb/cta {"label":"SCOPRI IL CASE","linkType":"anchor","linkUrl":"case","variant":"accent","size":"s","icon":"none"} /-->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->',
+	) );
+
+	/* ============================================================
+	 *  CONTAINER GRUPPO INIEZIONE (descrizione tecnica + immagine)
+	 * ============================================================ */
+	register_block_pattern( 'bmb/container-tech', array(
+		'title'         => __( 'BMB - Container Descrizione Tecnica', 'bmb-landing' ),
+		'description'   => __( 'Layout 50/50 testo + immagine con CTA in basso, ideale per descrivere componenti tecnici.', 'bmb-landing' ),
+		'categories'    => array( 'bmb' ),
+		'keywords'      => array( 'container', 'tecnico', 'descrizione' ),
+		'viewportWidth' => 1240,
+		'content'       => '<!-- wp:bmb/section {"verticalPad":"l","contentWidth":"wide","animationIn":"fade-up"} -->
+<section class="wp-block-bmb-section bmb-section bmb-section--vp-l" data-bmb-anim-in="fade-up" data-bmb-anim-out="none" data-bmb-anim-delay="0"><div class="bmb-section__inner bmb-section__inner--wide">
+
+<!-- wp:columns {"verticalAlignment":"center","className":"bmb-container-tech"} -->
+<div class="wp-block-columns are-vertically-aligned-center bmb-container-tech">
+<!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:bmb/heading {"text":"Gruppo di iniezione","level":2,"size":"xl","weight":"700"} /-->
+<!-- wp:bmb/paragraph {"text":"Il sistema è azionato da due motori sincroni raffreddati a liquido, ciascuno con funzione dedicata: uno per il movimento assiale di iniezione, l\'altro per la rotazione della vite durante la plastificazione.","size":"m"} /-->
+<!-- wp:bmb/paragraph {"text":"L\'integrazione diretta del motore Torque sull\'asse del pistone, senza riduttori o cinghie, diminuisce drasticamente gli interventi di manutenzione ordinaria e migliora la risposta dinamica del sistema.","size":"m"} /-->
+<!-- wp:bmb/paragraph {"text":"Le prestazioni si adattano a diverse composizioni e garantiscono versatilità operativa su un\'ampia gamma di prodotti.","size":"m"} /-->
+<!-- wp:bmb/cta {"label":"CHIAMA","linkType":"external","linkUrl":"tel:+39000000000","variant":"accent","size":"s","icon":"none"} /-->
+</div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:bmb/media {"mediaType":"image","imageUrl":"","imageAlt":"Gruppo iniezione","ratio":"4-3","size":"full","rounded":"m"} /-->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+
+</div></section>
+<!-- /wp:bmb/section -->',
+	) );
+
+	/* ============================================================
+	 *  CONTAINER + CHIPS TECNOLOGIE
+	 * ============================================================ */
+	register_block_pattern( 'bmb/container-chips', array(
+		'title'         => __( 'BMB - Container con Tecnologie usate', 'bmb-landing' ),
+		'description'   => __( 'Layout 50/50 immagine + descrizione con elenco chip "tecnologie usate" sotto.', 'bmb-landing' ),
+		'categories'    => array( 'bmb' ),
+		'keywords'      => array( 'container', 'tecnologie', 'chip' ),
+		'viewportWidth' => 1240,
+		'content'       => '<!-- wp:bmb/section {"verticalPad":"l","contentWidth":"wide","style":{"color":{"background":"#F1F5F9"}},"animationIn":"fade-up"} -->
+<section class="wp-block-bmb-section bmb-section bmb-section--vp-l has-background" style="background-color:#F1F5F9" data-bmb-anim-in="fade-up" data-bmb-anim-out="none" data-bmb-anim-delay="0"><div class="bmb-section__inner bmb-section__inner--wide">
+
+<!-- wp:columns {"verticalAlignment":"center"} -->
+<div class="wp-block-columns are-vertically-aligned-center">
+<!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:bmb/media {"mediaType":"image","imageUrl":"","imageAlt":"Applicazione","ratio":"4-3","size":"full","rounded":"m"} /-->
+</div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:bmb/heading {"text":"Contenitore per alimenti a parete sottile","level":3,"size":"l","weight":"600"} /-->
+<!-- wp:bmb/paragraph {"text":"La produzione di contenitori a parete sottile presso BMB avviene attraverso un processo altamente specializzato, utilizzando macchinari all\'avanguardia. Ogni fase, dalla progettazione alla realizzazione, è meticolosamente ottimizzata per garantire efficienza e qualità, assicurando che i prodotti finali siano leggeri ma resistenti.","size":"m"} /-->
+<!-- wp:bmb/paragraph {"text":"<strong>tecnologie usate</strong>","size":"s","uppercase":true,"maxWidth":"content"} /-->
+<!-- wp:buttons {"layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-buttons">
+<!-- wp:bmb/cta {"label":"imi","linkType":"anchor","linkUrl":"imi","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"stampaggio multicolore","linkType":"anchor","linkUrl":"multicolore","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"stampaggio multicomponente","linkType":"anchor","linkUrl":"multicomp","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"over injection","linkType":"anchor","linkUrl":"over","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"camera bianca","linkType":"anchor","linkUrl":"camera","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"stack mould","linkType":"anchor","linkUrl":"stack","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"insert loading","linkType":"anchor","linkUrl":"insert","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"stampaggio tecnico","linkType":"anchor","linkUrl":"tecnico","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"injection compression","linkType":"anchor","linkUrl":"injection","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"microstampaggio","linkType":"anchor","linkUrl":"micro","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"stampaggio materiale riciclato","linkType":"anchor","linkUrl":"riciclato","variant":"accent","size":"s","icon":"none"} /-->
+<!-- wp:bmb/cta {"label":"pet-preforms","linkType":"anchor","linkUrl":"pet","variant":"accent","size":"s","icon":"none"} /-->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+
+</div></section>
+<!-- /wp:bmb/section -->',
+	) );
+
+	/* ============================================================
+	 *  FAQ - accordion (details/summary)
+	 * ============================================================ */
+	register_block_pattern( 'bmb/faq', array(
+		'title'         => __( 'BMB - FAQ accordion', 'bmb-landing' ),
+		'description'   => __( 'Lista FAQ con domande espandibili, sfondo blu chiaro per la domanda attiva.', 'bmb-landing' ),
+		'categories'    => array( 'bmb' ),
+		'keywords'      => array( 'faq', 'accordion', 'domande' ),
+		'viewportWidth' => 900,
+		'content'       => '<!-- wp:bmb/section {"verticalPad":"l","contentWidth":"standard","animationIn":"fade-up"} -->
+<section class="wp-block-bmb-section bmb-section bmb-section--vp-l" data-bmb-anim-in="fade-up" data-bmb-anim-out="none" data-bmb-anim-delay="0"><div class="bmb-section__inner bmb-section__inner--standard">
+
+<!-- wp:html -->
+<details class="bmb-faq" open>
+<summary class="bmb-faq__q">Domanda tipo per la sezione faq?<span class="bmb-faq__toggle" aria-hidden="true">⊕</span></summary>
+<div class="bmb-faq__a">La risposta a una domanda tecnica per la sezione FAQ dovrebbe fornire informazioni dettagliate e chiare. È importante spiegare il concetto in modo che anche chi non ha familiarità con il tema possa comprendere. Ad esempio, se la domanda riguarda la configurazione di un software, si potrebbe descrivere passo dopo passo come procedere, includendo eventuali suggerimenti utili e avvertenze per evitare errori comuni. In questo modo, gli utenti possono trovare facilmente le informazioni di cui hanno bisogno e sentirsi supportati nel loro utilizzo del prodotto.</div>
+</details>
+
+<details class="bmb-faq">
+<summary class="bmb-faq__q">Domanda tipo per la sezione faq?<span class="bmb-faq__toggle" aria-hidden="true">⊕</span></summary>
+<div class="bmb-faq__a">Risposta…</div>
+</details>
+
+<details class="bmb-faq">
+<summary class="bmb-faq__q">Domanda tipo per la sezione faq?<span class="bmb-faq__toggle" aria-hidden="true">⊕</span></summary>
+<div class="bmb-faq__a">Risposta…</div>
+</details>
+<!-- /wp:html -->
 
 </div></section>
 <!-- /wp:bmb/section -->',
